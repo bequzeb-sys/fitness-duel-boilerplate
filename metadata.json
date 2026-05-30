@@ -1,0 +1,6 @@
+{
+  "name": "Fitness Duel",
+  "description": "Un tableau de bord social et de fitness ludique avec des défis, un classement et un entraîneur IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

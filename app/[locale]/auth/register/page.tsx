@@ -30,12 +30,12 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050911] text-sans flex items-center justify-center px-4">
+    <div className="min-h-screen bg-bg-dark text-sans flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-3 mb-4">
-            <div className="p-3 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-xl shadow-[0_0_20px_rgba(0,102,255,0.4)]">
+            <div className="p-3 bg-brand-blue rounded-xl shadow-brand">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
                 <path d="m16 16 6-6" />
@@ -69,7 +69,7 @@ export default function RegisterPage() {
               onChange={(e) => setName(e.target.value)}
               placeholder="Alex"
               maxLength={30}
-              className="w-full px-4 py-3 rounded-xl bg-[#070b12] border border-[#1b2333] text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-[#2d343d] text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
             />
           </div>
 
@@ -84,7 +84,7 @@ export default function RegisterPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="alex@example.com"
               autoComplete="email"
-              className="w-full px-4 py-3 rounded-xl bg-[#070b12] border border-[#1b2333] text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-[#2d343d] text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
             />
           </div>
 
@@ -99,7 +99,7 @@ export default function RegisterPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="8 caractères minimum"
               autoComplete="new-password"
-              className="w-full px-4 py-3 rounded-xl bg-[#070b12] border border-[#1b2333] text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-[#2d343d] text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
             />
           </div>
 
@@ -108,19 +108,19 @@ export default function RegisterPage() {
               type="checkbox"
               checked={agreed}
               onChange={(e) => setAgreed(e.target.checked)}
-              className="mt-0.5 w-4 h-4 rounded border-[#1b2333] bg-[#070b12] accent-blue-500 shrink-0"
+              className="mt-0.5 w-4 h-4 rounded border-[#2d343d] bg-surface-input accent-brand-blue shrink-0"
             />
             <span className="text-xs text-slate-400 leading-relaxed">
             J&apos;accepte les{" "}
-            <Link href="/fr/terms" className="text-blue-400 hover:underline">conditions d&apos;utilisation</Link>{" "}
+            <Link href="/fr/terms" className="text-brand-blue hover:underline">conditions d&apos;utilisation</Link>{" "}
             et la{" "}
-            <Link href="/fr/privacy" className="text-blue-400 hover:underline">politique de confidentialité</Link>.
+            <Link href="/fr/privacy" className="text-brand-blue hover:underline">politique de confidentialité</Link>.
             </span>
           </label>
 
           <button
             type="submit"
-            className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(0,102,255,0.25)]"
+            className="w-full py-3.5 bg-brand-blue text-bg-dark font-bold rounded-xl hover:opacity-90 transition-opacity shadow-brand"
           >
             Créer mon compte
           </button>
@@ -128,7 +128,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-sm text-slate-500 mt-6">
           Déjà un compte ?{" "}
-          <Link href="/fr/auth/login" className="text-blue-400 hover:text-blue-300 transition-colors font-medium">
+          <Link href="/fr/auth/login" className="text-brand-blue hover:text-brand-blue/80 transition-colors font-medium">
             Se connecter
           </Link>
         </p>

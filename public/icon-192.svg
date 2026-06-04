@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
-  <rect width="192" height="192" rx="32" fill="#050911"/>
+  <rect width="192" height="192" rx="32" fill="#0b0d10"/>
   <g transform="translate(96,96)">
-    <path d="M-55 -20 L-55 20 L-45 20 L-45 -20 Z" fill="#3b82f6"/>
-    <path d="M55 -20 L55 20 L45 20 L45 -20 Z" fill="#3b82f6"/>
-    <path d="M-35 -30 L-35 -20 L35 -20 L35 -30 Z" fill="#3b82f6"/>
-    <path d="M-35 30 L-35 20 L35 20 L35 30 Z" fill="#3b82f6"/>
-    <path d="M-20 -55 L-20 -45 L20 -45 L20 -55 Z" fill="#3b82f6"/>
-    <path d="M-20 55 L-20 45 L20 45 L20 55 Z" fill="#3b82f6"/>
-    <circle cx="0" cy="0" r="24" fill="#1d4ed8"/>
-    <circle cx="0" cy="0" r="16" fill="#3b82f6"/>
-    <circle cx="0" cy="0" r="8" fill="#60a5fa"/>
+    <path d="M-55 -20 L-55 20 L-45 20 L-45 -20 Z" fill="#12D9FF"/>
+    <path d="M55 -20 L55 20 L45 20 L45 -20 Z" fill="#12D9FF"/>
+    <path d="M-35 -30 L-35 -20 L35 -20 L35 -30 Z" fill="#12D9FF"/>
+    <path d="M-35 30 L-35 20 L35 20 L35 30 Z" fill="#12D9FF"/>
+    <path d="M-20 -55 L-20 -45 L20 -45 L20 -55 Z" fill="#12D9FF"/>
+    <path d="M-20 55 L-20 45 L20 45 L20 55 Z" fill="#12D9FF"/>
+    <circle cx="0" cy="0" r="24" fill="#12D9FF" opacity="0.9"/>
+    <circle cx="0" cy="0" r="16" fill="#12D9FF" opacity="0.6"/>
+    <circle cx="0" cy="0" r="8" fill="#12D9FF"/>
   </g>
 </svg>

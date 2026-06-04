@@ -82,7 +82,7 @@ export default function ActivitePage({
       <Card padding="lg" className="space-y-5">
         <div className="pb-2">
           <div className="flex items-center gap-2.5 mb-3">
-            <div className="p-2 bg-blue-600/15 text-blue-400 rounded-lg">
+            <div className="p-2 bg-brand-blue/15 text-brand-blue rounded-lg">
               <Dumbbell className="h-5 w-5" />
             </div>
             <div>
@@ -109,7 +109,7 @@ export default function ActivitePage({
                   className={cn(
                     "p-3 text-xs justify-center",
                     logExerciseType === ex.key
-                      ? "bg-blue-600 border-blue-500 text-white shadow-[0_4px_12px_rgba(0,102,255,0.3)]"
+                      ? "bg-brand-blue border-brand-blue text-bg-dark shadow-brand"
                       : "bg-surface-input border-border-card text-slate-400"
                   )}
                 >
@@ -150,7 +150,7 @@ export default function ActivitePage({
                   className={cn(
                     "p-2.5 text-xs justify-center",
                     logIntensity === rate.id
-                      ? "bg-blue-600 border-blue-500 text-white shadow-[0_4px_12px_rgba(0,102,255,0.3)]"
+                      ? "bg-brand-blue border-brand-blue text-bg-dark shadow-brand"
                       : "bg-surface-input border-border-card text-slate-400"
                   )}
                 >
@@ -204,7 +204,7 @@ export default function ActivitePage({
                   className={cn(
                     "px-3 py-1 text-[10px]",
                     activityFilter === tf.id
-                      ? "bg-hover-bg text-blue-400 border border-border-card"
+                      ? "bg-hover-bg text-brand-blue border border-border-card"
                       : "text-slate-400 hover:text-slate-200 bg-transparent"
                   )}
                 >
@@ -224,7 +224,7 @@ export default function ActivitePage({
               return true;
             })
             .map((act) => (
-              <Card key={act.id} padding="md" className="space-y-3 hover:border-blue-500/20">
+              <Card key={act.id} padding="md" className="space-y-3 hover:border-brand-blue/20">
                 <div className="flex justify-between items-start gap-2">
                   <div className="flex gap-3">
                     <Avatar
@@ -240,7 +240,7 @@ export default function ActivitePage({
                         {act.type === "challenge_taken" && t("actionCompleted")}
                         {act.type === "challenge_won" && t("actionWon")}
                       </p>
-                      <span className="block text-xs font-extrabold text-blue-400 mt-1">{act.detail}</span>
+                      <span className="block text-xs font-extrabold text-brand-blue mt-1">{act.detail}</span>
                     </div>
                   </div>
                   <span className="text-[10px] text-slate-500 font-mono shrink-0">{act.time}</span>

@@ -48,7 +48,7 @@ export function useUserProfile() {
         });
       } else if (type === "info") {
         toast.info(msg, {
-          icon: <AlertCircle className="h-4 w-4 text-blue-400" />,
+          icon: <AlertCircle className="h-4 w-4 text-brand-blue" />,
         });
       } else if (type === "error") {
         toast.error(msg, {

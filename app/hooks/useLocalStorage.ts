@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 function readStorage<T>(key: string, initialValue: T): T {
   try {
@@ -22,11 +22,25 @@ function readStorage<T>(key: string, initialValue: T): T {
   }
 }
 
+/**
+ * SSR-safe useLocalStorage.
+ *
+ * Server: returns `initialValue` (no localStorage access).
+ * Client mount: reads localStorage once, then falls back to `initialValue` if absent.
+ * Writes always go to localStorage via the setter.
+ */
 export function useLocalStorage<T>(
   key: string,
   initialValue: T
 ): [T, React.Dispatch<React.SetStateAction<T>>] {
-  const [storedValue, setStoredValue] = useState<T>(() => readStorage(key, initialValue));
+  const [storedValue, setStoredValue] = useState<T>(initialValue);
+  const hasSynced = useRef(false);
+
+  useEffect(() => {
+    if (hasSynced.current) return;
+    hasSynced.current = true;
+    setStoredValue(readStorage(key, initialValue));
+  }, [key, initialValue]);
 
   const setValue: React.Dispatch<React.SetStateAction<T>> = useCallback(
     (value: React.SetStateAction<T>) => {

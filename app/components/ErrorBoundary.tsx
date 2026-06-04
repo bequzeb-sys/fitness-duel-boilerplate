@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       if (this.props.fallback) return this.props.fallback;
       return (
-        <div className="min-h-screen bg-[#050911] flex items-center justify-center p-8">
+        <div className="min-h-screen bg-bg-dark flex items-center justify-center p-8">
           <div className="bg-bg-card border border-rose-500/30 rounded-2xl p-8 max-w-md text-center space-y-4">
             <div className="flex justify-center">
               <div className="p-4 bg-rose-500/10 rounded-full border border-rose-500/20">
@@ -42,7 +42,7 @@ export class ErrorBoundary extends Component<Props, State> {
             </div>
             <button
               onClick={() => this.setState({ hasError: false })}
-              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all cursor-pointer"
+              className="px-6 py-2.5 bg-brand-blue hover:opacity-90 text-bg-dark text-sm font-bold rounded-xl transition-all cursor-pointer"
             >
               Réesayer
             </button>

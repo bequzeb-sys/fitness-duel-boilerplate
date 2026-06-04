@@ -68,7 +68,7 @@ export default function CreateChallengeModal({
             {/* Header */}
             <div className="flex justify-between items-center pb-3 border-b border-border-card">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 rounded-lg">
+                <div className="p-2 bg-brand-blue/10 border border-brand-blue/20 text-brand-blue rounded-lg">
                   <Swords className="h-5 w-5" />
                 </div>
                 <div>
@@ -95,7 +95,7 @@ export default function CreateChallengeModal({
                     "w-full bg-surface-input border rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all placeholder-slate-600 font-medium",
                     errors.title
                       ? "border-rose-500/80 focus:border-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.15)] animate-shake"
-                      : "border-border-card focus:border-blue-500"
+                      : "border-border-card focus:border-brand-blue"
                   )}
                 />
                 <AnimatePresence>
@@ -120,7 +120,7 @@ export default function CreateChallengeModal({
                   <select
                     value={newCategory}
                     onChange={(e) => setNewCategory(e.target.value)}
-                    className="w-full bg-surface-input border border-border-card rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 font-medium cursor-pointer"
+                    className="w-full bg-surface-input border border-border-card rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue font-medium cursor-pointer"
                   >
                     {CATEGORIES.map((cat) => (
                       <option key={cat} value={cat}>{cat}</option>
@@ -142,7 +142,7 @@ export default function CreateChallengeModal({
                       "w-full bg-surface-input border rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all font-mono font-bold",
                       errors.participants
                         ? "border-rose-500/80 focus:border-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.15)]"
-                        : "border-border-card focus:border-blue-500"
+                        : "border-border-card focus:border-brand-blue"
                     )}
                   />
                   <AnimatePresence>

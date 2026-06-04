@@ -6,7 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/app/
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
 import { PillBadge } from "@/app/components/ui/badge";
-import { Icon } from "@/app/components/ui/icon";
+import { Icon } from "@/components/ui/icon";
 import { cn } from "@/lib/utils";
 import { TABS } from "@/app/types";
 
@@ -48,7 +48,7 @@ export default function Sidebar({
 
         {/* Logo */}
         <div className="flex items-center gap-3 py-2 cursor-pointer shrink-0" onClick={() => setActiveTab(TABS.HOME)}>
-          <div className="p-2.5 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-xl shadow-[0_0_15px_rgba(0,102,255,0.4)] flex items-center justify-center">
+          <div className="p-2.5 bg-gradient-to-br from-brand-blue to-brand-blue rounded-xl shadow-brand flex items-center justify-center">
             <Swords className="h-5 w-5 text-white" />
           </div>
           <div>
@@ -71,7 +71,7 @@ export default function Sidebar({
                       className={cn(
                         "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group relative",
                         isActive
-                          ? "bg-blue-600/15 text-blue-400 font-semibold border-l-4 border-blue-500 rounded-l-none pl-2"
+                          ? "bg-brand-blue/15 text-brand-blue font-semibold border-l-4 border-brand-blue rounded-l-none pl-2"
                           : "text-slate-400 hover:bg-hover-bg/50 hover:text-slate-200"
                       )}
                     >
@@ -79,7 +79,7 @@ export default function Sidebar({
                         <IconComp
                           className={cn(
                             "h-[18px] w-[18px] transition-transform group-hover:scale-105",
-                            isActive ? "text-blue-400" : "text-slate-400 group-hover:text-slate-200"
+                            isActive ? "text-brand-blue" : "text-slate-400 group-hover:text-slate-200"
                           )}
                         />
                         <span>{item.label}</span>
@@ -123,7 +123,7 @@ export default function Sidebar({
                   className={cn(
                     "h-3.5 w-3.5 rounded-full flex items-center justify-center transition-all",
                     sd.checked
-                      ? "bg-blue-600 text-white"
+                      ? "bg-brand-blue text-bg-dark"
                       : "bg-hover-bg text-transparent hover:bg-hover-active border border-border-card"
                   )}
                 >
@@ -141,7 +141,7 @@ export default function Sidebar({
           href="https://fitnessduel.app"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 text-xs font-mono text-slate-500 hover:text-blue-400 transition-colors py-1 group"
+          className="flex items-center justify-center gap-2 text-xs font-mono text-slate-500 hover:text-brand-blue transition-colors py-1 group"
         >
           <Icon icon={ExternalLink} size="sm" className="transition-transform group-hover:translate-x-0.5" />
           <span>fitnessduel.app</span>

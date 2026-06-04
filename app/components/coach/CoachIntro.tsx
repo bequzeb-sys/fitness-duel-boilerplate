@@ -14,9 +14,9 @@ export function CoachIntro({ userName }: CoachIntroProps) {
 
   return (
     <div onClick={() => toast(t("coachIntroClicked"), { icon: "💡" })}>
-      <Card padding="md" className="bg-gradient-to-br from-blue-900/20 via-blue-950/5 to-transparent border-blue-500/10 space-y-2 mb-2 cursor-pointer">
+      <Card padding="md" className="bg-brand-blue/5 border border-brand-blue/10 space-y-2 mb-2 cursor-pointer">
         <div className="flex items-center gap-1.5">
-          <Sparkles className="h-4 w-4 text-blue-400" />
+          <Sparkles className="h-4 w-4 text-brand-blue" />
           <span className="text-xs font-bold text-blue-300 uppercase tracking-wider">{t("proAdvisor")}</span>
         </div>
         <p className="text-xs text-slate-300 leading-relaxed font-medium">

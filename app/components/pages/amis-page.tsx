@@ -128,7 +128,7 @@ export default function AmisPage({
             {/* Command palette for friends search */}
             <button
               onClick={() => setCommandOpen(true)}
-              className="flex bg-surface-input border border-border-card rounded-xl px-3 py-2 items-center gap-2 w-full hover:border-blue-500/50 transition-colors text-left"
+              className="flex bg-surface-input border border-border-card rounded-xl px-3 py-2 items-center gap-2 w-full hover:border-brand-blue/50 transition-colors text-left"
             >
               <Search className="h-4 w-4 text-slate-500" />
               <span className="text-sm text-slate-500">{t("searchPlaceholder")}</span>
@@ -217,7 +217,7 @@ export default function AmisPage({
         <div className="lg:col-span-4 space-y-6">
           <Card padding="lg" className="space-y-4">
             <div className="flex items-center gap-2">
-              <UserPlus className="h-5 w-5 text-blue-400" />
+              <UserPlus className="h-5 w-5 text-brand-blue" />
               <h4 className="font-display font-extrabold text-white text-sm uppercase tracking-wider font-sans">{t("addTitle")}</h4>
             </div>
 
@@ -239,7 +239,7 @@ export default function AmisPage({
                 className={`w-full bg-surface-input border rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-all placeholder-slate-600 font-medium ${
                   friendNameError
                     ? "border-rose-500/80 focus:border-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.12)]"
-                    : "border-border-card focus:border-blue-500"
+                    : "border-border-card focus:border-brand-blue"
                 }`}
               />
               <AnimatePresence>

@@ -65,7 +65,7 @@ export function SavePlanModal({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder={t("modalTitlePlaceholder")}
-                className="w-full bg-surface-input border border-border-card rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors font-semibold"
+                className="w-full bg-surface-input border border-border-card rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors font-semibold"
               />
             </div>
 

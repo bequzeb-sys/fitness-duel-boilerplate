@@ -27,7 +27,12 @@ import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
 import { Avatar } from "@/app/components/ui/avatar";
 import { TierBadge } from "@/app/components/ui/badge";
-import { Icon } from "@/app/components/ui/icon";
+import { Icon } from "@/components/ui/icon";
+import {
+  DEFAULT_CHALLENGES_WON,
+  DEFAULT_CHALLENGES_LAUNCHED,
+  DEFAULT_ACTIVE_FRIENDS,
+} from "@/lib/constants";
 
 interface AccueilTabProps {
   heroSlideIndex: number;
@@ -58,7 +63,7 @@ interface AccueilTabProps {
 const RANKING_TABS = ["Semaine", "Mois", "Tout le temps"] as const;
 
 const HERO_SLIDE_COLORS = [
-  "text-[#00ddff]",
+  "text-brand-cyan",
   "text-amber-400",
   "text-emerald-400",
 ] as const;
@@ -74,7 +79,7 @@ const SOCIAL_SHARES: SocialShare[] = [
   { name: "WhatsApp", color: "bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 border-[#25D366]/30", link: "https://whatsapp.com" },
   { name: "Instagram", color: "bg-[#E1306C]/10 text-[#E1306C] hover:bg-[#E1306C]/20 border-[#E1306C]/30", link: "https://instagram.com" },
   { name: "Facebook", color: "bg-[#1877F2]/10 text-[#1877F2] hover:bg-[#1877F2]/20 border-[#1877F2]/30", link: "https://facebook.com" },
-  { name: "Plus", color: "bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border-blue-500/30", action: true },
+  { name: "Plus", color: "bg-brand-blue/10 text-brand-blue hover:bg-brand-blue/20 border-brand-blue/30", action: true },
 ];
 
 const MINI_BADGES = [
@@ -158,8 +163,8 @@ export default function AccueilTab({
             </div>
 
             {/* Dark gradient overlay */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-[#050911] via-[#050911]/75 to-transparent z-[1]" />
-            <div className="absolute inset-0 rounded-2xl bg-[#0066ff]/5 mix-blend-overlay z-[1]" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-bg-dark via-bg-dark/75 to-transparent z-[1]" />
+            <div className="absolute inset-0 rounded-2xl bg-brand-blue/5 mix-blend-overlay z-[1]" />
 
             {/* Text content */}
             <div className="p-6 relative z-10 space-y-2.5">
@@ -202,7 +207,7 @@ export default function AccueilTab({
                     onClick={() => setHeroSlideIndex(idx)}
                     className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                       heroSlideIndex === idx
-                        ? idx === 0 ? "w-5 bg-[#00ddff]" : idx === 1 ? "w-5 bg-amber-400" : "w-5 bg-emerald-400"
+                        ? idx === 0 ? "w-5 bg-brand-cyan" : idx === 1 ? "w-5 bg-amber-400" : "w-5 bg-emerald-400"
                         : "w-1.5 bg-slate-600/80 hover:bg-slate-500"
                     }`}
                     aria-label={`Slide ${idx + 1}`}
@@ -216,9 +221,9 @@ export default function AccueilTab({
           <div className="md:col-span-4">
             <Card padding="lg" className="flex flex-col justify-between h-[220px]">
               <div className="flex items-center gap-3">
-                <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-blue-700 to-cyan-400 p-[2px] flex items-center justify-center shadow-[0_0_15px_rgba(0,102,255,0.3)] animate-pulse shrink-0">
+                <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-brand-blue to-brand-blue p-[2px] flex items-center justify-center shadow-brand animate-pulse shrink-0">
                   <div className="h-full w-full rounded-full bg-bg-card flex items-center justify-center">
-                    <Trophy className="h-5 w-5 text-blue-400" />
+                    <Trophy className="h-5 w-5 text-brand-blue" />
                   </div>
                 </div>
                 <div>
@@ -234,7 +239,7 @@ export default function AccueilTab({
                 </div>
                 <div className="w-full bg-hover-bg rounded-full h-2 overflow-hidden border border-border-card">
                   <div
-                    className="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full transition-all duration-1000"
+                    className="bg-gradient-to-r from-brand-blue to-brand-blue h-2 rounded-full transition-all duration-1000"
                     style={{ width: `${levelPercentage}%` }}
                   />
                 </div>
@@ -244,15 +249,15 @@ export default function AccueilTab({
               {/* Horizontal small stats grid bar */}
               <div className="border-t border-border-card/80 pt-3 grid grid-cols-3 gap-2 text-center">
                 <div>
-                  <span className="block text-sm font-bold text-white font-mono leading-none">12</span>
+                  <span className="block text-sm font-bold text-white font-mono leading-none">{DEFAULT_CHALLENGES_WON}</span>
                   <span className="text-[9px] text-slate-500 font-medium">{t("challengesWon")}</span>
                 </div>
                 <div className="border-x border-border-card/60">
-                  <span className="block text-sm font-bold text-white font-mono leading-none">24</span>
+                  <span className="block text-sm font-bold text-white font-mono leading-none">{DEFAULT_CHALLENGES_LAUNCHED}</span>
                   <span className="text-[9px] text-slate-500 font-medium">{t("challengesLaunched")}</span>
                 </div>
                 <div>
-                  <span className="block text-sm font-bold text-white font-mono leading-none">15</span>
+                  <span className="block text-sm font-bold text-white font-mono leading-none">{DEFAULT_ACTIVE_FRIENDS}</span>
                   <span className="text-[9px] text-slate-500 font-medium">{t("activeFriends")}</span>
                 </div>
               </div>
@@ -283,13 +288,13 @@ export default function AccueilTab({
                   />
                   <div className="flex-1 min-w-0">
                     <p className="text-xs text-slate-300 leading-normal">
-                      <strong className="text-white font-bold group-hover:text-blue-400 transition-colors">
+                      <strong className="text-white font-bold group-hover:text-brand-blue transition-colors">
                         {act.user}
                       </strong>{" "}
                       {act.type === "challenge_made" && t("actionLaunched")}
                       {act.type === "challenge_taken" && t("actionCompleted")}
                       {act.type === "challenge_won" && t("actionWon")}
-                      <span className="block text-xs font-semibold text-blue-400 mt-0.5">{act.detail}</span>
+                      <span className="block text-xs font-semibold text-brand-blue mt-0.5">{act.detail}</span>
                     </p>
                   </div>
                   <span className="text-[10px] text-slate-500 font-mono shrink-0 pt-0.5">{act.time}</span>
@@ -321,23 +326,23 @@ export default function AccueilTab({
                         className="object-cover transition-transform group-hover:scale-110"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-blue-600/10 mix-blend-overlay" />
+                      <div className="absolute inset-0 bg-brand-blue/10 mix-blend-overlay" />
                     </div>
 
                     {/* Right descriptions */}
                     <div className="flex-1 p-3 flex flex-col justify-between min-w-0">
                       <div>
-                        <h4 className="text-xs font-bold text-white truncate group-hover:text-blue-400 transition-colors">{chal.title}</h4>
+                        <h4 className="text-xs font-bold text-white truncate group-hover:text-brand-blue transition-colors">{chal.title}</h4>
                         <p className="text-[10px] text-slate-500 font-medium mt-0.5">{chal.category}</p>
                       </div>
                       <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono">
                         <span>{t("partLabel")} <strong className="text-white font-bold">{chal.participants}</strong></span>
-                        <span className="text-blue-400">{t("endLabel")} {chal.timeLeft}</span>
+                        <span className="text-brand-blue">{t("endLabel")} {chal.timeLeft}</span>
                       </div>
                     </div>
 
                     {/* Hover action arrow */}
-                    <div className="px-2 flex items-center justify-center bg-[#111a28] border-l border-border-card text-slate-500 group-hover:text-blue-400 transition-colors shrink-0">
+                    <div className="px-2 flex items-center justify-center bg-bg-overlay border-l border-border-card text-slate-500 group-hover:text-brand-blue transition-colors shrink-0">
                       <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                     </div>
                   </Card>
@@ -348,15 +353,15 @@ export default function AccueilTab({
         </div>
 
         {/* CENTRAL CALL TO ACTION BANNER */}
-        <Card padding="xl" className="bg-gradient-to-r from-blue-700 to-blue-600 border-border-card/80 shadow-xl">
+        <Card padding="xl" className="bg-gradient-to-r from-brand-blue to-brand-blue border-brand-blue/20 shadow-brand">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4 text-center sm:text-left">
               <div className="p-3 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
                 <Trophy className="h-7 w-7 text-white" />
               </div>
               <div>
-                <h3 className="font-display font-extrabold text-[#00ddff] text-base sm:text-lg tracking-tight">{t("ctaHeadline")}</h3>
-                <p className="text-xs text-blue-100 font-medium">{t("ctaSubtitle")}</p>
+                <h3 className="font-display font-extrabold text-brand-cyan text-base sm:text-lg tracking-tight">{t("ctaHeadline")}</h3>
+                <p className="text-xs text-bg-dark/80 font-medium">{t("ctaSubtitle")}</p>
               </div>
             </div>
             <Button variant="whiteCta" onClick={() => setIsCreateChallengeOpen(true)}>
@@ -446,14 +451,14 @@ export default function AccueilTab({
                   className="min-h-[110px] hover:scale-105 transition-transform duration-200 cursor-pointer"
                 >
                   <div className="flex flex-col items-center justify-between h-full w-full gap-1">
-                    <div className="p-1.5 bg-slate-900/80 rounded-lg border border-slate-700/60">
+                    <div className="p-1.5 bg-surface-raised rounded-lg border border-border-card">
                       <Award className="h-4 w-4" />
                     </div>
                     <div>
                       <p className="text-[10px] font-bold truncate max-w-full text-slate-200">{t(bd.nameKey)}</p>
                       <p className="text-[8px] text-slate-500 font-medium mt-0.5 whitespace-nowrap truncate max-w-full">{t(bd.descKey)}</p>
                     </div>
-                    <span className="text-[8px] font-bold px-1.5 py-0.5 bg-slate-950/50 rounded-full">
+                    <span className="text-[8px] font-bold px-1.5 py-0.5 bg-bg-dark/50 rounded-full">
                       {t(bd.subKey)}
                     </span>
                   </div>
@@ -498,13 +503,13 @@ export default function AccueilTab({
                 key={leader.name}
                 className={`flex items-center justify-between p-2.5 rounded-xl border transition-all ${
                   leader.isYou
-                    ? "bg-blue-600/15 border-blue-500/40 shadow-[0_0_12px_rgba(0,102,255,0.15)]"
-                    : "bg-surface-raised border-border-card/80 hover:border-[#2b3c55]"
+                    ? "bg-brand-blue/15 border-brand-blue/40 shadow-[0_0_12px_rgba(18,217,255,0.15)]"
+                    : "bg-surface-raised border-border-card/80 hover:border-hover-deep"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <span className={`text-xs font-mono font-bold w-4 text-center ${
-                    leader.rank === 1 ? "text-yellow-500" : leader.rank === 2 ? "text-blue-400" : "text-slate-500"
+                    leader.rank === 1 ? "text-yellow-500" : leader.rank === 2 ? "text-brand-blue" : "text-slate-500"
                   }`}>
                     {leader.rank}
                   </span>
@@ -518,11 +523,11 @@ export default function AccueilTab({
                   />
 
                   <div className="flex items-center gap-1">
-                    <span className={`text-xs font-bold ${leader.isYou ? "text-blue-400 font-extrabold" : "text-slate-200"}`}>
+                    <span className={`text-xs font-bold ${leader.isYou ? "text-brand-blue font-extrabold" : "text-slate-200"}`}>
                       {leader.name}
                     </span>
                     {leader.isCrown && <span className="text-xs">&#x1F451;</span>}
-                    {leader.isYou && <span className="text-[9px] font-bold text-blue-500 bg-blue-500/10 px-1.5 py-0.2 rounded uppercase tracking-wider">{t("me")}</span>}
+                    {leader.isYou && <span className="text-[9px] font-bold text-brand-blue bg-brand-blue/10 px-1.5 py-0.2 rounded uppercase tracking-wider">{t("me")}</span>}
                   </div>
                 </div>
 
@@ -551,7 +556,7 @@ export default function AccueilTab({
             <div className="flex items-center gap-2">
               <div className="h-2 w-2 bg-emerald-500 rounded-full animate-pulse" />
               <h3 className="font-display font-bold text-sm text-slate-200 uppercase tracking-wider">{t("coachIA")}</h3>
-              <span className="text-[10px] font-bold px-1.5 py-0.2 bg-blue-600 text-white rounded uppercase tracking-wider scale-90">
+              <span className="text-[10px] font-bold px-1.5 py-0.2 bg-brand-blue text-bg-dark rounded uppercase tracking-wider scale-90">
                 {t("new")}
               </span>
             </div>
@@ -561,7 +566,7 @@ export default function AccueilTab({
               onClick={() => setActiveTab(TABS.COACH)}
               className="gap-1.5"
             >
-              <ExternalLink className="h-3 w-3 text-blue-400" />
+              <ExternalLink className="h-3 w-3 text-brand-blue" />
               <span>{t("viewDetails")}</span>
             </Button>
           </div>
@@ -575,7 +580,7 @@ export default function AccueilTab({
               >
                 <div className="flex items-center gap-1.5 mb-1">
                   {m.sender === "coach" && (
-                    <div className="h-4 w-4 rounded bg-blue-600 flex items-center justify-center text-[10px] text-white">
+                    <div className="h-4 w-4 rounded bg-brand-blue flex items-center justify-center text-[10px] text-bg-dark">
                       A
                     </div>
                   )}
@@ -585,7 +590,7 @@ export default function AccueilTab({
                 </div>
                 <div className={`p-3 rounded-2xl text-xs max-w-[85%] leading-relaxed whitespace-pre-line ${
                   m.sender === "user"
-                    ? "bg-blue-600 text-white rounded-tr-none shadow-[0_4px_10px_rgba(0,102,255,0.25)]"
+                    ? "bg-brand-blue text-bg-dark rounded-tr-none shadow-[0_4px_10px_rgba(18,217,255,0.18)]"
                     : "bg-surface-raised text-slate-200 rounded-tl-none border border-border-card"
                 }`}>
                   {m.text}
@@ -597,7 +602,7 @@ export default function AccueilTab({
             {coachTyping && (
               <div className="flex flex-col items-start">
                 <div className="flex items-center gap-1.5 mb-1">
-                  <div className="h-4 w-4 rounded bg-blue-600 flex items-center justify-center text-[10px] text-white">
+                  <div className="h-4 w-4 rounded bg-brand-blue flex items-center justify-center text-[10px] text-bg-dark">
                     A
                   </div>
                   <span className="text-[9px] text-slate-500 font-semibold font-mono">{t("chatCoach")}</span>

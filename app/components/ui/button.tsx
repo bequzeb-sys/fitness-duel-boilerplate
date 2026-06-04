@@ -31,19 +31,19 @@ export type ButtonSize =
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-[0_4px_12px_rgba(0,102,255,0.2)] active:scale-95 transition-all cursor-pointer",
+    "bg-brand-blue hover:bg-brand-blue/80 text-bg-dark font-bold shadow-brand active:scale-95 transition-all cursor-pointer",
   primarySmall:
-    "bg-blue-600 hover:bg-blue-500 text-white font-bold text-[10px] py-1.5 shadow-[0_4px_12px_rgba(0,102,255,0.2)] active:scale-95 transition-all cursor-pointer",
+    "bg-brand-blue hover:bg-brand-blue/80 text-bg-dark font-bold text-[10px] py-1.5 shadow-brand active:scale-95 transition-all cursor-pointer",
   ghost:
-    "bg-blue-600/10 text-blue-400 hover:bg-blue-600 hover:text-white border border-blue-500/20 font-bold transition-all cursor-pointer",
+    "bg-brand-blue/10 text-brand-blue hover:bg-brand-blue hover:text-bg-dark border border-brand-blue/25 font-bold transition-all cursor-pointer",
   secondary:
     "bg-hover-bg text-slate-400 hover:text-white hover:bg-hover-active border border-border-card font-bold transition-all cursor-pointer",
   ghostText:
-    "text-blue-400 hover:text-blue-300 font-medium transition-colors hover:underline bg-transparent border-none cursor-pointer",
+    "text-brand-blue hover:text-brand-blue/80 font-medium transition-colors hover:underline bg-transparent border-none cursor-pointer",
   destructive:
     "text-slate-500 hover:text-rose-400 bg-rose-500/5 hover:bg-rose-500/10 rounded transition-colors cursor-pointer border-none bg-transparent",
   whiteCta:
-    "bg-white hover:bg-slate-100 text-blue-700 font-bold shadow-sm hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all cursor-pointer",
+    "bg-white hover:bg-slate-100 text-brand-blue font-bold shadow-sm hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all cursor-pointer",
   social:
     "border transition-all cursor-pointer",
   icon:

@@ -80,7 +80,7 @@ export default function ProfilPage({
               alt="avatar"
               size="2xl"
               shape="square"
-              borderColor="border-blue-500"
+              borderColor="border-brand-blue"
               borderWidth="border-2"
               shadow="shadow-2xl"
             />
@@ -128,7 +128,7 @@ export default function ProfilPage({
                 type="number"
                 value={userWeight}
                 onChange={(e) => setUserWeight(Number(e.target.value))}
-                className="w-full bg-surface-input border border-border-card rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 font-mono font-bold"
+                className="w-full bg-surface-input border border-border-card rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue font-mono font-bold"
               />
             </div>
 
@@ -138,7 +138,7 @@ export default function ProfilPage({
                 type="number"
                 value={userHeight}
                 onChange={(e) => setUserHeight(Number(e.target.value))}
-                className="w-full bg-surface-input border border-border-card rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 font-mono font-bold"
+                className="w-full bg-surface-input border border-border-card rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue font-mono font-bold"
               />
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function ProfilPage({
                 type="number"
                 value={dailyXpGoal}
                 onChange={(e) => setDailyXpGoal(Number(e.target.value))}
-                className="w-full bg-surface-input border border-border-card rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 font-mono font-bold"
+                className="w-full bg-surface-input border border-border-card rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue font-mono font-bold"
               />
             </div>
 
@@ -161,7 +161,7 @@ export default function ProfilPage({
                 onChange={(e) => setUserBio(e.target.value)}
                 maxLength={200}
                 rows={2}
-                className="w-full bg-surface-input border border-border-card rounded-xl px-3 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-sans"
+                className="w-full bg-surface-input border border-border-card rounded-xl px-3 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-brand-blue font-sans"
               />
             </div>
           </div>
@@ -201,7 +201,7 @@ export default function ProfilPage({
         <Card variant="overlay" padding="lg" className="space-y-3">
           <div className="flex justify-between items-center text-xs font-bold text-slate-300 pb-1">
             <span>{t("activeHours")}</span>
-            <span className="text-blue-400 font-mono font-bold">{t("hoursProgress", { hours: 14.5, total: 20 })}</span>
+            <span className="text-brand-blue font-mono font-bold">{t("hoursProgress", { hours: 14.5, total: 20 })}</span>
           </div>
           <Progress value={72.5} />
           <p className="text-[10px] text-slate-500 text-right">{t("weeklyReport")}</p>

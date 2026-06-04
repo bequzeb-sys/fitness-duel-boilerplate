@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 
 // ─── Tier badge variants (for badge collection) ────────────────────────────────
 const tierGradientStyles: Record<string, string> = {
-  "tier-standard": "from-blue-500/10 via-blue-600/5 to-transparent border-blue-500/30 text-blue-400",
+  "tier-standard": "from-brand-blue/10 via-brand-blue/5 to-transparent border-brand-blue/30 text-brand-blue",
   "tier-standard-locked": "from-slate-800/5 to-transparent border-slate-700/30 text-slate-500",
   "tier-rare-amber": "from-amber-500/10 via-amber-600/5 to-transparent border-amber-500/30 text-amber-400",
   "tier-rare-emerald": "from-emerald-500/10 via-emerald-600/5 to-transparent border-emerald-500/30 text-emerald-400",
@@ -14,12 +14,12 @@ const tierGradientStyles: Record<string, string> = {
 
 // ─── Pill badge variants ─────────────────────────────────────────────────────
 const pillStyles: Record<string, string> = {
-  "pill-new": "bg-blue-600 text-white font-bold uppercase tracking-wider animate-pulse",
+  "pill-new": "bg-brand-blue text-bg-dark font-bold uppercase tracking-wider animate-pulse",
   "pill-status": "bg-surface-overlay text-slate-400 font-bold",
-  "pill-xp": "bg-blue-500/10 text-blue-400 font-mono font-bold",
+  "pill-xp": "bg-brand-blue/10 text-brand-blue font-mono font-bold",
   "pill-rank": "bg-hover-bg font-mono font-bold border border-slate-700/60",
-  "pill-progress": "bg-slate-950/50 font-bold",
-  "pill-tier-count": "bg-blue-500/20 text-blue-400 font-mono font-bold",
+  "pill-progress": "bg-bg-dark/50 font-bold",
+  "pill-tier-count": "bg-brand-blue/20 text-brand-blue font-mono font-bold",
 }
 
 const pillSizeStyles: Record<string, string> = {
@@ -29,6 +29,7 @@ const pillSizeStyles: Record<string, string> = {
 }
 
 const tierSizeStyles: Record<string, string> = {
+  xs: "p-2 min-h-[60px]",
   sm: "p-3 min-h-[80px]",
   md: "p-4 min-h-[140px]",
   lg: "p-5 min-h-[200px]",

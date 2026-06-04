@@ -140,21 +140,21 @@ export default function ClassementsPage({
         </div>
 
         {/* Rank 3 (You) */}
-        <div className="bg-bg-card/80 border border-blue-500/20 rounded-2xl p-5 flex flex-col items-center justify-between text-center min-h-[200px] md:order-3 order-3">
+        <div className="bg-bg-card/80 border border-brand-blue/20 rounded-2xl p-5 flex flex-col items-center justify-between text-center min-h-[200px] md:order-3 order-3">
           <div className="space-y-2">
             <PillBadge variant="pill-rank" size="sm">{t("rank3")}</PillBadge>
             <Avatar
               src={podium3?.avatar ?? "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=120"}
               alt={podium3?.name ?? "Alex"}
               size="2xl"
-              borderColor="border-blue-500"
+              borderColor="border-brand-blue"
               borderWidth="border-2"
               shadow="shadow-xl"
               fallback={podium3?.name?.slice(0, 2) ?? "AL"}
             />
             <h4 className="font-display font-extrabold text-white text-sm">{t("rankingsMe")}</h4>
           </div>
-          <p className="text-base font-mono font-extrabold text-blue-400 mt-4">
+          <p className="text-base font-mono font-extrabold text-brand-blue mt-4">
             {podium3?.score ?? 0} <span className="text-xs text-slate-500 font-medium font-sans">{unitLabel}</span>
           </p>
         </div>
@@ -173,7 +173,7 @@ export default function ClassementsPage({
               key={item.name}
               className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
                 item.isYou
-                  ? "bg-blue-600/15 border-blue-500/60 shadow-[0_0_12px_rgba(0,102,255,0.15)]"
+                  ? "bg-brand-blue/15 border-brand-blue/60 shadow-brand"
                   : "bg-surface-raised border-border-card/60 hover:border-slate-600/50"
               }`}
             >
@@ -193,11 +193,11 @@ export default function ClassementsPage({
                 />
 
                 <div className="flex items-center gap-1.5">
-                  <span className={`text-xs font-bold ${item.isYou ? "text-blue-400 font-extrabold" : "text-slate-200"}`}>
+                  <span className={`text-xs font-bold ${item.isYou ? "text-brand-blue font-extrabold" : "text-slate-200"}`}>
                     {item.name}
                   </span>
                   {item.isCrown && <span>&#x1F451;</span>}
-                  {item.isYou && <span className="text-[8px] font-bold px-1.5 bg-blue-500 text-white rounded uppercase tracking-widest font-sans">{t("rankings")}</span>}
+                  {item.isYou && <span className="text-[8px] font-bold px-1.5 bg-brand-blue text-bg-dark rounded uppercase tracking-widest font-sans">{t("rankings")}</span>}
                 </div>
               </div>
 

@@ -52,6 +52,7 @@ export default function OnboardingProfilePage() {
   });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProfile((p) => ({ ...p, name: localStorage.getItem("fitness_duel_user_name") ?? "" }));
   }, []);
 
@@ -68,12 +69,12 @@ export default function OnboardingProfilePage() {
   const canContinue = profile.name.trim().length > 0;
 
   return (
-    <div className="min-h-screen bg-[#050911] text-sans flex items-center justify-center px-4 py-12">
+      <div className="min-h-screen bg-bg-dark text-sans flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-lg">
         {/* Logo */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-3 mb-3">
-            <div className="p-2.5 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-xl shadow-[0_0_20px_rgba(0,102,255,0.4)]">
+            <div className="p-2.5 bg-gradient-to-br from-brand-blue to-brand-blue rounded-xl shadow-brand">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
                 <path d="m16 16 6-6" />
@@ -91,14 +92,14 @@ export default function OnboardingProfilePage() {
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
                     step === 1
-                      ? "bg-blue-600 text-white"
-                      : "bg-[#1b2333] text-slate-500"
+                      ? "bg-brand-blue text-bg-dark"
+                      : "bg-[#2d343d] text-slate-500"
                   }`}
                 >
                   {step}
                 </div>
                 {step < 3 && (
-                  <div className="w-8 h-px bg-[#1b2333]" />
+                  <div className="w-8 h-px bg-[#2d343d]" />
                 )}
               </div>
             ))}
@@ -118,8 +119,8 @@ export default function OnboardingProfilePage() {
                   onClick={() => setProfile((p) => ({ ...p, avatar }))}
                   className={`relative rounded-full overflow-hidden border-2 transition-all w-14 h-14 shrink-0 ${
                     profile.avatar === avatar
-                      ? "border-blue-500 ring-2 ring-blue-500/30"
-                      : "border-[#1b2333] hover:border-slate-600"
+                      ? "border-brand-blue ring-2 ring-brand-blue/30"
+                      : "border-[#2d343d] hover:border-slate-600"
                   }`}
                 >
                   <Image src={avatar} alt="avatar" width={56} height={56} className="object-cover" />
@@ -140,7 +141,7 @@ export default function OnboardingProfilePage() {
               onChange={(e) => setProfile((p) => ({ ...p, name: e.target.value }))}
               placeholder={t("usernamePlaceholder")}
               maxLength={30}
-              className="w-full px-4 py-3 rounded-xl bg-[#070b12] border border-[#1b2333] text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-border-card text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
             />
           </div>
 
@@ -154,8 +155,8 @@ export default function OnboardingProfilePage() {
                   onClick={() => setProfile((p) => ({ ...p, goal: g.value }))}
                   className={`px-4 py-2.5 rounded-xl border text-sm font-medium transition-all ${
                     profile.goal === g.value
-                      ? "border-blue-500 bg-blue-600/20 text-blue-400"
-                      : "border-[#1b2333] text-slate-400 hover:border-slate-600"
+                      ? "border-brand-blue bg-brand-blue/20 text-brand-blue"
+                      : "border-[#2d343d] text-slate-400 hover:border-slate-600"
                   }`}
                 >
                   {g.labelKey}
@@ -174,8 +175,8 @@ export default function OnboardingProfilePage() {
                   onClick={() => setProfile((p) => ({ ...p, level: l.value }))}
                   className={`px-3 py-2.5 rounded-xl border text-sm font-medium transition-all ${
                     profile.level === l.value
-                      ? "border-blue-500 bg-blue-600/20 text-blue-400"
-                      : "border-[#1b2333] text-slate-400 hover:border-slate-600"
+                      ? "border-brand-blue bg-brand-blue/20 text-brand-blue"
+                      : "border-[#2d343d] text-slate-400 hover:border-slate-600"
                   }`}
                 >
                   {l.labelKey}
@@ -196,7 +197,7 @@ export default function OnboardingProfilePage() {
                 placeholder={t("weightPlaceholder")}
                 min="30"
                 max="300"
-                className="w-full px-4 py-3 rounded-xl bg-[#070b12] border border-[#1b2333] text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-surface-input border border-border-card text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
               />
             </div>
             <div>
@@ -209,7 +210,7 @@ export default function OnboardingProfilePage() {
                 placeholder={t("heightPlaceholder")}
                 min="100"
                 max="250"
-                className="w-full px-4 py-3 rounded-xl bg-[#070b12] border border-[#1b2333] text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-surface-input border border-border-card text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
               />
             </div>
           </div>
@@ -220,8 +221,8 @@ export default function OnboardingProfilePage() {
           disabled={!canContinue}
           className={`w-full mt-8 py-3.5 font-bold rounded-xl transition-all ${
             canContinue
-              ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-[0_0_20px_rgba(0,102,255,0.25)] hover:opacity-90"
-              : "bg-[#1b2333] text-slate-600 cursor-not-allowed"
+              ? "bg-brand-blue text-bg-dark shadow-brand hover:opacity-90"
+              : "bg-[#2d343d] text-slate-600 cursor-not-allowed"
           }`}
         >
           {t("continueToFriends")}

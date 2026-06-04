@@ -19,7 +19,7 @@ import {
 } from "@/app/components/ui/dropdown-menu";
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
-import { Icon } from "@/app/components/ui/icon";
+import { Icon } from "@/components/ui/icon";
 
 interface HeaderProps {
   userName: string;
@@ -64,7 +64,7 @@ export default function Header({
             <Icon icon={Menu} size="md" />
           </Button>
           <div
-            className="p-2 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-lg flex items-center justify-center cursor-pointer"
+            className="p-2 bg-brand-blue rounded-lg shadow-brand flex items-center justify-center cursor-pointer"
             onClick={() => {}}
           >
             <Swords className="h-4 w-4 text-white" />
@@ -126,8 +126,8 @@ export default function Header({
                     <Button variant="ghostText" size="sm" className="text-[10px]">{t("markAllRead")}</Button>
                   </div>
                   <div className="space-y-2.5">
-                    <div className="p-2.5 rounded-lg bg-blue-600/10 border border-blue-500/20 flex gap-2.5 items-start">
-                      <Swords className="h-4 w-4 text-blue-400 mt-0.5 shrink-0" />
+                    <div className="p-2.5 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex gap-2.5 items-start">
+                      <Swords className="h-4 w-4 text-brand-blue mt-0.5 shrink-0" />
                       <div>
                         <p className="text-xs text-slate-200">
                           <strong className="text-white font-semibold">Thomas</strong> {t("notifDefied", { user: "Thomas", challenge: "Pompes en 2 minutes" })}
@@ -180,14 +180,14 @@ export default function Header({
                 className="flex items-center justify-between"
               >
                 <span>{t("gainXp100")}</span>
-                <span className="text-[10px] font-bold text-blue-400">+100 XP</span>
+                <span className="text-[10px] font-bold text-brand-blue">+100 XP</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onSelect={() => { gainXp(250, tc("weeklyWorkoutReason")); }}
                 className="flex items-center justify-between"
               >
                 <span>{t("gainXp250")}</span>
-                <span className="text-[10px] font-bold text-blue-400">+250 XP</span>
+                <span className="text-[10px] font-bold text-brand-blue">+250 XP</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem

@@ -62,10 +62,10 @@ export default function OnboardingFirstChallengePage() {
 
   if (started) {
     return (
-      <div className="min-h-screen bg-[#050911] text-sans flex items-center justify-center">
+      <div className="min-h-screen bg-bg-dark text-sans flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center mx-auto mb-6 shadow-[0_0_40px_rgba(0,102,255,0.4)] animate-pulse">
+            <div className="w-20 h-20 rounded-full bg-bg-dark text-sans flex items-center justify-center mx-auto mb-6 shadow-brand animate-pulse">
               <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
                 <path d="m16 16 6-6" />
@@ -83,12 +83,12 @@ export default function OnboardingFirstChallengePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050911] text-sans flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-bg-dark text-sans flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-lg">
         {/* Logo */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-3 mb-3">
-            <div className="p-2.5 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-xl shadow-[0_0_20px_rgba(0,102,255,0.4)]">
+            <div className="p-2.5 bg-brand-blue rounded-xl shadow-brand">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
                 <path d="m16 16 6-6" />
@@ -106,13 +106,13 @@ export default function OnboardingFirstChallengePage() {
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
                     step === 3
-                      ? "bg-blue-600 text-white"
+                      ? "bg-brand-blue text-bg-dark"
                       : "bg-green-600 text-white"
                   }`}
                 >
                   {step}
                 </div>
-                {step < 3 && <div className="w-8 h-px bg-[#1b2333]" />}
+                {step < 3 && <div className="w-8 h-px bg-[#2d343d]" />}
               </div>
             ))}
           </div>
@@ -128,8 +128,8 @@ export default function OnboardingFirstChallengePage() {
               onClick={() => handleSelect(tpl.id)}
               className={`w-full p-4 rounded-xl border transition-all text-left flex items-center gap-4 ${
                 selected === tpl.id
-                  ? "border-blue-500 bg-blue-600/10 ring-1 ring-blue-500/30"
-                  : "border-[#1b2333] bg-[#070b12] hover:border-slate-600"
+                  ? "border-brand-blue bg-brand-blue/10 ring-1 ring-brand-blue/30"
+                  : "border-[#2d343d] bg-surface-input hover:border-slate-600"
               }`}
             >
               <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0">
@@ -138,12 +138,12 @@ export default function OnboardingFirstChallengePage() {
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-white text-sm">{tpl.title}</p>
                 <p className="text-xs text-slate-400 mt-0.5">{tpl.desc}</p>
-                <span className="inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full bg-blue-600/20 text-blue-400 font-medium">
+                <span className="inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full bg-brand-blue/20 text-brand-blue font-medium">
                   {tpl.category}
                 </span>
               </div>
               <div className={`w-5 h-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors ${
-                selected === tpl.id ? "border-blue-500 bg-blue-500" : "border-slate-600"
+                selected === tpl.id ? "border-brand-blue bg-brand-blue" : "border-slate-600"
               }`}>
                 {selected === tpl.id && (
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
@@ -158,13 +158,13 @@ export default function OnboardingFirstChallengePage() {
         <div className="flex flex-col gap-3 mt-8">
           <button
             onClick={handleStart}
-            className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(0,102,255,0.25)]"
+            className="w-full py-3.5 bg-brand-blue text-bg-dark font-bold rounded-xl hover:opacity-90 transition-opacity shadow-brand"
           >
             {selected ? "C'est parti !" : "Commencer sans défi"}
           </button>
           <button
             onClick={() => handleStart()}
-            className="w-full py-3.5 border border-[#1b2333] text-slate-400 font-medium rounded-xl hover:border-slate-600 hover:text-slate-300 transition-all text-sm"
+            className="w-full py-3.5 border border-[#2d343d] text-slate-400 font-medium rounded-xl hover:border-slate-600 hover:text-slate-300 transition-all text-sm"
           >
             Passer
           </button>

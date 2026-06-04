@@ -16,7 +16,7 @@ import {
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
 import { PillBadge } from "@/app/components/ui/badge";
-import { Icon as LucideIconWrapper } from "@/app/components/ui/icon";
+import { Icon as LucideIconWrapper } from "@/components/ui/icon";
 
 interface Challenge {
   id: string;
@@ -88,14 +88,15 @@ export default function DefisPage({
       {/* Search & Category Selection Row */}
       <Card padding="md" className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Command palette trigger button */}
-        <button
+        <Button
+          variant="secondary"
           onClick={() => setCommandOpen(true)}
-          className="flex bg-surface-input border border-border-card rounded-xl px-3 py-2 items-center gap-2 flex-grow max-w-md hover:border-blue-500/50 transition-colors text-left"
+          className="flex-grow max-w-md justify-start gap-2 text-slate-500 hover:text-slate-300"
         >
-          <Search className="h-4 w-4 text-slate-500" />
-          <span className="text-sm text-slate-500">{t("searchPlaceholder")}</span>
+          <Search className="h-4 w-4" />
+          <span className="text-sm">{t("searchPlaceholder")}</span>
           <span className="ml-auto text-xs text-slate-600 font-mono">Ctrl+K</span>
-        </button>
+        </Button>
 
         <CommandDialog open={commandOpen} onOpenChange={setCommandOpen}>
           <CommandInput
@@ -153,13 +154,13 @@ export default function DefisPage({
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-card to-transparent" />
-              <span className="absolute top-3 left-3 bg-blue-600/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              <span className="absolute top-3 left-3 bg-brand-blue text-bg-dark text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
                 {chal.category}
               </span>
             </div>
 
             <div className="p-5 flex-grow space-y-3">
-              <h4 className="font-display font-extrabold text-white text-base leading-tight group-hover:text-blue-400 transition-colors">
+                <h4 className="font-display font-extrabold text-white text-base leading-tight group-hover:text-brand-blue transition-colors">
                 {chal.title}
               </h4>
               <p className="text-xs text-slate-400 line-clamp-2">{t("description")}</p>
@@ -171,7 +172,7 @@ export default function DefisPage({
                 </div>
                 <div className="text-right">
                   <span className="text-slate-500 block text-[9px] uppercase font-bold">{t("timeLeft")}</span>
-                  <span className="text-blue-400 font-bold">{chal.timeLeft}</span>
+                  <span className="text-brand-blue font-bold">{chal.timeLeft}</span>
                 </div>
               </div>
             </div>
@@ -211,7 +212,7 @@ export default function DefisPage({
             <h4 className="font-display font-extrabold text-white text-base">{t("recommendations")}</h4>
             <p className="text-xs text-slate-400">{t("recommendationsSub")}</p>
           </div>
-          <Sparkles className="h-5 w-5 text-blue-500 fill-blue-500/20" />
+          <Sparkles className="h-5 w-5 text-brand-blue fill-brand-blue/20" />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">

@@ -13,7 +13,7 @@ interface BadgesPageProps {
 }
 
 const BADGES = [
-  { nameKey: "nameLeCommencant", descKey: "descFirstJoin", earned: true, tierKey: "rankStandard", sub: null, style: "from-blue-500/10 text-blue-400 border-blue-500/30" },
+  { nameKey: "nameLeCommencant", descKey: "descFirstJoin", earned: true, tierKey: "rankStandard", sub: null, style: "from-brand-blue/10 text-brand-blue border-brand-blue/30" },
   { nameKey: "nameLaMenace", descKey: "descXpMilestone", earned: true, tierKey: "rankRare", sub: "Atteint", style: "from-amber-500/10 text-amber-400 border-amber-500/30" },
   { nameKey: "nameCardioBoss", descKey: "descStreakDays", earned: true, tierKey: "rankRare", sub: "7/7", style: "from-emerald-500/10 text-emerald-400 border-emerald-500/30" },
   { nameKey: "nameCercleConfiance", descKey: "descFirstChallenge", earned: false, tierKey: "rankStandard", sub: "2/3", style: "from-slate-800/5 text-slate-500 border-slate-700/30" },
@@ -48,7 +48,7 @@ export default function BadgesPage({
       {/* Ring Progress summary block */}
       <Card padding="xl" className="flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-4 text-center sm:text-left">
-          <div className="h-14 w-14 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center p-[2px] shadow-[0_0_15px_rgba(0,102,255,0.3)] shrink-0">
+          <div className="h-14 w-14 rounded-full bg-brand-blue flex items-center justify-center p-[2px] shadow-brand shrink-0">
             <div className="h-full w-full rounded-full bg-bg-card flex items-center justify-center font-display font-black text-sm text-brand-cyan">
               {levelPercentage}%
             </div>

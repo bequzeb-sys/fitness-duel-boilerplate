@@ -19,7 +19,7 @@ import {
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
 import { PillBadge } from "@/app/components/ui/badge";
-import { Icon } from "@/app/components/ui/icon";
+import { Icon } from "@/components/ui/icon";
 import { cn } from "@/lib/utils";
 import { TABS } from "@/app/types";
 
@@ -91,7 +91,7 @@ export default function MobileDrawer({
                   className="flex items-center gap-3 cursor-pointer"
                   onClick={() => { setActiveTab(TABS.HOME); onClose(); }}
                 >
-                  <div className="p-2 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-xl shadow-[0_0_15px_rgba(0,102,255,0.4)] flex items-center justify-center">
+                  <div className="p-2 bg-brand-blue rounded-xl shadow-brand flex items-center justify-center">
                     <Swords className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -121,7 +121,7 @@ export default function MobileDrawer({
                       className={cn(
                         "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group relative",
                         isActive
-                          ? "bg-blue-600/15 text-blue-400 font-semibold border-l-4 border-blue-500 rounded-l-none pl-2"
+                          ? "bg-brand-blue/15 text-brand-blue font-semibold border-l-4 border-brand-blue rounded-l-none pl-2"
                           : "text-slate-400 hover:bg-hover-bg/50 hover:text-slate-200"
                       )}
                     >
@@ -129,7 +129,7 @@ export default function MobileDrawer({
                         <IconComp
                           className={cn(
                             "h-[18px] w-[18px] transition-transform group-hover:scale-105",
-                            isActive ? "text-blue-400" : "text-slate-400 group-hover:text-slate-200"
+                            isActive ? "text-brand-blue" : "text-slate-400 group-hover:text-slate-200"
                           )}
                         />
                         <span>{item.label}</span>
@@ -157,7 +157,7 @@ export default function MobileDrawer({
                   </PillBadge>
                 </div>
                 <div className="w-full bg-slate-800/80 rounded-full h-1 overflow-hidden">
-                  <div className="bg-blue-500 h-1 rounded-full transition-all duration-1000" style={{ width: `${levelPercentage}%` }} />
+                  <div className="bg-brand-blue h-1 rounded-full transition-all duration-1000" style={{ width: `${levelPercentage}%` }} />
                 </div>
                 <div className="flex justify-between items-center text-[9px] text-slate-500 pt-0.5">
                   <span>{t("streakDone")} : <strong className="text-slate-400">LÉGENDE</strong></span>
@@ -189,7 +189,7 @@ export default function MobileDrawer({
                         className={cn(
                           "h-4.5 w-4.5 rounded-full flex items-center justify-center transition-all",
                           sd.checked
-                            ? "bg-blue-600 text-white"
+                            ? "bg-brand-blue text-bg-dark"
                             : "bg-hover-bg text-transparent hover:bg-hover-active border border-border-card"
                         )}
                       >
@@ -209,7 +209,7 @@ export default function MobileDrawer({
                 href="https://fitnessduel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-[10px] font-mono text-slate-500 hover:text-blue-400 transition-colors py-0.5 group"
+                className="flex items-center justify-center gap-2 text-[10px] font-mono text-slate-500 hover:text-brand-blue transition-colors py-0.5 group"
               >
                 <ExternalLink className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                 <span>fitnessduel.app</span>

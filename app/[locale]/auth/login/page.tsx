@@ -38,7 +38,7 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-3 mb-4">
-            <div className="p-3 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-xl shadow-[0_0_20px_rgba(0,102,255,0.4)]">
+            <div className="p-3 bg-brand-blue rounded-xl shadow-brand">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
                 <path d="m16 16 6-6" />
@@ -72,7 +72,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="alex@example.com"
               autoComplete="email"
-              className="w-full px-4 py-3 rounded-xl bg-[#070b12] border border-[#1b2333] text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-[#2d343d] text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
             />
           </div>
 
@@ -87,13 +87,13 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ton mot de passe"
               autoComplete="current-password"
-              className="w-full px-4 py-3 rounded-xl bg-[#070b12] border border-[#1b2333] text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-[#2d343d] text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(0,102,255,0.25)]"
+            className="w-full py-3.5 bg-brand-blue text-bg-dark font-bold rounded-xl hover:opacity-90 transition-opacity shadow-brand"
           >
             Se connecter
           </button>
@@ -101,7 +101,7 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-slate-500 mt-6">
           Pas encore de compte ?{" "}
-          <Link href="/fr/auth/register" className="text-blue-400 hover:text-blue-300 transition-colors font-medium">
+          <Link href="/fr/auth/register" className="text-brand-blue hover:text-brand-blue/80 transition-colors font-medium">
             Créer un compte
           </Link>
         </p>

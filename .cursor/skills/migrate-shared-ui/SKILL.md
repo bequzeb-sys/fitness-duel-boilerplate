@@ -1,101 +1,124 @@
----
-name: migrate-shared-ui
-description: >
-  Migrate FitnessDuel pages from inline Tailwind button/card/avatar/badge patterns to shared UI components.
-  Use when asked to migrate a page or component to shared UI, replace inline buttons with <Button>,
-  inline cards with <Card>, inline avatars with <Avatar>, or inline badges with <Badge>.
----
+# Migrate Inline UI Patterns to Shared Components
 
-# Migrate Shared UI Components
+Use this skill when the user asks to migrate a page or component to shared UI — or when you see any inline `<button>`, `<div>` used as a card, inline avatar markup, or inline badge markup.
 
-This skill migrates FitnessDuel consumer files to use the shared design system components.
-It is safe to apply incrementally: one component type at a time, one file at a time.
+## Workflow
 
-## Before You Start
+### Step 1 — Identify what to migrate
 
-1. Read `app/components/ui/button.tsx` — know the exact variant and size options available.
-2. Read `app/components/ui/card.tsx`, `app/components/ui/avatar.tsx`, `app/components/ui/badge.tsx`.
-3. Read `.cursor/skills/migrate-shared-ui/reference.md` for the full API reference and pattern mappings.
-4. Read the file you are about to migrate in full.
+Scan the target file for these inline patterns:
 
-## Migration Order
+| Pattern | Replace With |
+|---|---|
+| `<button className="...">` | `<Button>` |
+| `<div className="...bg-bg-card border border-border-card...">` | `<Card>` |
+| `<div className="...flex items-center gap-2">...fallback...</div>` | `<Avatar>` |
+| Inline tier badge markup | `<TierBadge>` |
+| `<span className="bg-blue-600...">` pill | `<PillBadge>` |
 
-Always migrate in this order — simplest components first:
+### Step 2 — Add imports
 
-1. `Button` — most instances, highest payoff
-2. `Avatar` — 7 unique patterns, mostly mechanical replacement
-3. `Badge` / `PillBadge` / `TierBadge` — straightforward variant swaps
-4. `Card` — structural replacement, watch for nested children
-5. `Icon` — only if explicitly asked; icon migration is low-priority
-
-## Per-File Workflow
-
-For each file you migrate:
-
-```
-1. Read the file completely
-2. Identify all inline button/card/avatar/badge instances
-3. Map each instance to the closest matching shared component variant
-4. Make the replacement — one component type at a time
-5. Add the component import: import { Button } from "@/app/components/ui/button"
-6. Run: npx tsc --noEmit
-7. Run: npm run lint
-8. Fix any errors before proceeding
-```
-
-## Decision Tree for Unmatched Patterns
-
-If an inline pattern does not map exactly to a shared component variant:
-
-**Button**: If no variant matches, prefer `variant="primary"` (the default). Use `className` to add one small extra class only if necessary. If many extra classes are needed, the variant likely needs to be expanded in `button.tsx` first.
-
-**Card**: If a card has custom padding or layout inside, use `padding="none"` and apply the padding manually to the children. Never fight the component.
-
-**Avatar**: Use the closest size. If border or shadow is different, pass `borderColor` or `shadow` props. Do not add extra wrapper divs.
-
-**Badge**: If a badge has unique text content (e.g., a number), use `PillBadge` with the closest visual style and pass the content as children.
-
-## Import Pattern
-
-Always use the `@/` alias:
+Always add these imports at the top of the file:
 
 ```tsx
 import { Button } from "@/app/components/ui/button"
 import { Card } from "@/app/components/ui/card"
 import { Avatar } from "@/app/components/ui/avatar"
-import { Badge, TierBadge, PillBadge } from "@/app/components/ui/badge"
+import { TierBadge, PillBadge } from "@/app/components/ui/badge"
 import { Icon } from "@/app/components/ui/icon"
 ```
 
-## Files to Migrate (in priority order)
+### Step 3 — Migrate each pattern
 
-1. `app/components/header/Header.tsx`
-2. `app/components/sidebar/Sidebar.tsx`
-3. `app/components/sidebar/MobileDrawer.tsx`
-4. `app/components/pages/defis-page.tsx`
-5. `app/components/pages/activite-page.tsx`
-6. `app/components/pages/amis-page.tsx`
-7. `app/components/pages/classements-page.tsx`
-8. `app/components/pages/badges-page.tsx`
-9. `app/components/pages/profil-page.tsx`
-10. `app/components/coach/CoachPage.tsx`
-11. `app/components/coach/ChatBubble.tsx`
-12. `app/components/coach/ChatInput.tsx`
-13. `app/components/coach/CoachSuggestions.tsx`
-14. `app/components/coach/CoachIntro.tsx`
-15. `app/components/modals/CreateChallengeModal.tsx`
-16. `app/components/modals/SavePlanModal.tsx`
-17. `app/components/tabs/AccueilTab.tsx`
+#### Buttons
 
-See [reference.md](reference.md) for exact pattern mappings per file.
+```tsx
+// Before (any inline button)
+<button
+  onClick={handleClick}
+  className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2 rounded-xl transition-all cursor-pointer"
+>
+  Submit
+</button>
 
-## Verification Checklist
+// After
+<Button variant="primary" onClick={handleClick}>
+  Submit
+</Button>
+```
 
-After each file:
-- [ ] `npx tsc --noEmit` — zero errors
-- [ ] `npm run lint` — zero warnings
-- [ ] Dev server renders the page correctly (no visual regressions)
+Button variants available: `primary`, `ghost`, `secondary`, `ghostText`, `destructive`, `whiteCta`, `social`, `icon`, `iconSmall`, `streak`, `pill`, `primarySmall`
+Button sizes: `xs`, `sm`, `md`, `lg`, `icon-xs`, `icon-sm`, `icon-md`, `icon-lg`
 
-After all files migrated:
-- [ ] All checklist items above
-- [ ] Update `docs/design-system-roadmap.md` — mark migrated files as done
+#### Cards
+
+```tsx
+// Before
+<div className="bg-bg-card border border-border-card rounded-2xl p-5">
+
+// After
+<Card padding="lg">
+```
+
+Card variants: `default` (bg-bg-card), `elevated` (bg-surface-raised), `interactive` (hover border), `overlay`, `input`
+Card padding: `none`, `sm`, `md`, `lg`, `xl`
+
+#### Avatars
+
+```tsx
+// Before
+<div className="flex items-center gap-2">
+  <img src={src} className="h-8 w-8 rounded-full object-cover" />
+  <span className="text-xs text-slate-300">{name}</span>
+</div>
+
+// After
+<div className="flex items-center gap-2">
+  <Avatar src={src} alt={name} size="sm" fallback={name.slice(0, 2)} />
+  <span className="text-xs text-slate-300">{name}</span>
+</div>
+```
+
+Avatar sizes: `xs` (24px), `sm` (32px), `md` (40px), `lg` (48px), `xl` (56px), `2xl` (72px)
+Avatar shapes: `circle` (default), `square`
+
+#### Tier Badges
+
+```tsx
+// Before
+<div className="bg-gradient-to-b from-blue-500/10 via-blue-600/5 to-transparent border border-blue-500/30 text-blue-400 p-3 rounded-2xl">
+
+// After
+<TierBadge variant="tier-standard" size="md">
+```
+
+Tier variants: `tier-standard`, `tier-standard-locked`, `tier-rare-amber`, `tier-rare-emerald`, `tier-mythical`
+Sizes: `sm` (80px), `md` (140px), `lg` (200px)
+
+#### Pill Badges
+
+```tsx
+// Before
+<span className="bg-blue-600 text-white font-bold px-2 py-0.5 rounded-full text-[10px]">
+
+// After
+<PillBadge variant="pill-new" size="sm">
+```
+
+Pill variants: `pill-new` (blue pulse), `pill-status` (muted), `pill-xp` (blue mono), `pill-rank`, `pill-progress`, `pill-tier-count`
+
+### Step 4 — Verify
+
+After migrating, run:
+```bash
+npx tsc --noEmit
+```
+Ensure no import errors and no type errors.
+
+## Anti-patterns to avoid
+
+- Do NOT import from `@/components/ui/` — this project uses `@/app/components/ui/`
+- Do NOT mix inline button styles with shared Button variants — choose the closest variant
+- Do NOT use `className` overrides for standard padding — use `padding="none"` on Card instead
+- Do NOT create new badge components — use `TierBadge` or `PillBadge`
+- Do NOT hardcode colors in migrated code — use semantic CSS variables already in the components

@@ -47,7 +47,7 @@ export default async function RootLayout({children, params}: {children: React.Re
   return (
     <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head></head>
-      <body className="bg-[#050911] text-slate-100 min-h-screen text-sans antialiased selection:bg-blue-600/30 selection:text-blue-200">
+      <body className="bg-bg-dark text-slate-100 min-h-screen text-sans antialiased selection:bg-brand-blue/30 selection:text-brand-blue">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
           <ErrorBoundary>
             {children}

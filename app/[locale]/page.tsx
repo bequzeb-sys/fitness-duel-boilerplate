@@ -122,12 +122,12 @@ export default async function LandingPage({
         }}
       />
 
-      <div className="bg-[#050911] text-sans">
+      <div className="bg-bg-dark text-sans">
         {/* Navbar */}
-        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#1b2333] bg-[#050911]/90 backdrop-blur-sm">
+        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#2d343d] bg-bg-dark/90 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-xl">
+              <div className="p-2 bg-brand-blue rounded-xl shadow-brand">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
                   <path d="m16 16 6-6" />
@@ -150,7 +150,7 @@ export default async function LandingPage({
         {/* Hero */}
         <section className="pt-20 pb-24 px-6 text-center">
           <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-600/20 text-blue-400 text-xs font-medium mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-xs font-medium mb-8">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
               Coach IA intégré — Fonctionne hors ligne
             </div>
@@ -163,13 +163,13 @@ export default async function LandingPage({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={registerHref}
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-[0_0_30px_rgba(0,102,255,0.3)]"
+                className="px-8 py-4 bg-brand-blue text-bg-dark font-bold rounded-xl hover:opacity-90 transition-opacity shadow-brand"
               >
                 {t("heroCta")}
               </a>
               <a
                 href="#features"
-                className="px-8 py-4 border border-[#1b2333] text-slate-300 font-medium rounded-xl hover:border-blue-500/50 hover:text-white transition-all"
+                className="px-8 py-4 border border-[#2d343d] text-slate-300 font-medium rounded-xl hover:border-brand-blue/50 hover:text-white transition-all"
               >
                 {t("heroCtaSecondary")}
               </a>
@@ -178,16 +178,16 @@ export default async function LandingPage({
         </section>
 
         {/* Features */}
-        <section id="features" className="py-24 px-6 border-t border-[#1b2333]">
+        <section id="features" className="py-24 px-6 border-t border-[#2d343d]">
           <div className="max-w-6xl mx-auto">
             <h2 className="font-display text-3xl font-bold text-white text-center mb-4">
               {t("featuresTitle")}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
               {/* Challenges */}
-              <div className="p-6 rounded-2xl border border-[#1b2333] bg-[#070b12] hover:border-blue-500/30 transition-colors">
-                <div className="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center mb-4">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="p-6 rounded-2xl border border-[#2d343d] bg-surface-input hover:border-brand-blue/30 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-4">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12D9FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
                     <path d="m16 16 6-6" />
                     <path d="m8 8 6-6" />
@@ -199,7 +199,7 @@ export default async function LandingPage({
                 <p className="text-sm text-slate-400 leading-relaxed">{t("featureChallengesDesc")}</p>
               </div>
               {/* XP & Badges */}
-              <div className="p-6 rounded-2xl border border-[#1b2333] bg-[#070b12] hover:border-blue-500/30 transition-colors">
+              <div className="p-6 rounded-2xl border border-[#2d343d] bg-surface-input hover:border-brand-blue/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -209,7 +209,7 @@ export default async function LandingPage({
                 <p className="text-sm text-slate-400 leading-relaxed">{t("featureXpDesc")}</p>
               </div>
               {/* Coach IA */}
-              <div className="p-6 rounded-2xl border border-[#1b2333] bg-[#070b12] hover:border-blue-500/30 transition-colors">
+              <div className="p-6 rounded-2xl border border-[#2d343d] bg-surface-input hover:border-brand-blue/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-purple-600/10 flex items-center justify-center mb-4">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -219,7 +219,7 @@ export default async function LandingPage({
                 <p className="text-sm text-slate-400 leading-relaxed">{t("featureCoachDesc")}</p>
               </div>
               {/* Rankings */}
-              <div className="p-6 rounded-2xl border border-[#1b2333] bg-[#070b12] hover:border-blue-500/30 transition-colors">
+              <div className="p-6 rounded-2xl border border-[#2d343d] bg-surface-input hover:border-brand-blue/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fb923c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
@@ -238,15 +238,15 @@ export default async function LandingPage({
         </section>
 
         {/* How it works */}
-        <section className="py-24 px-6 border-t border-[#1b2333] bg-[#070b12]">
+        <section className="py-24 px-6 border-t border-[#2d343d] bg-surface-input">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-3xl font-bold text-white text-center mb-16">
               {t("howItWorksTitle")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="w-14 h-14 rounded-full bg-blue-600/20 border border-blue-600/30 flex items-center justify-center mx-auto mb-6">
-                  <span className="font-display text-xl font-black text-blue-400">1</span>
+                <div className="w-14 h-14 rounded-full bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center mx-auto mb-6">
+                  <span className="font-display text-xl font-black text-brand-blue">1</span>
                 </div>
                 <h3 className="font-bold text-white mb-3">{t("step1Title")}</h3>
                 <p className="text-sm text-slate-400">{t("step1Desc")}</p>
@@ -270,20 +270,20 @@ export default async function LandingPage({
         </section>
 
         {/* Challenge categories */}
-        <section className="py-24 px-6 border-t border-[#1b2333]">
+        <section className="py-24 px-6 border-t border-[#2d343d]">
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="font-display text-3xl font-bold text-white mb-2">{t("challengesTitle")}</h2>
             <p className="text-slate-400 mb-12">{t("challengesSubtitle")}</p>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { title: t("challengeMusculation"), desc: t("challengeMusculationDesc"), color: "from-blue-600/20 to-blue-600/5", border: "hover:border-blue-500/40", accent: "text-blue-400" },
+                { title: t("challengeMusculation"), desc: t("challengeMusculationDesc"), color: "from-brand-blue/20 to-brand-blue/5", border: "hover:border-brand-blue/40", accent: "text-brand-blue" },
                 { title: t("challengeEndurance"), desc: t("challengeEnduranceDesc"), color: "from-orange-600/20 to-orange-600/5", border: "hover:border-orange-500/40", accent: "text-orange-400" },
                 { title: t("challengeGainage"), desc: t("challengeGainageDesc"), color: "from-cyan-500/20 to-cyan-500/5", border: "hover:border-cyan-500/40", accent: "text-cyan-400" },
                 { title: t("challengeSquats"), desc: t("challengeSquatsDesc"), color: "from-purple-600/20 to-purple-600/5", border: "hover:border-purple-500/40", accent: "text-purple-400" },
               ].map((cat) => (
                 <div
                   key={cat.title}
-                  className={`p-5 rounded-xl bg-gradient-to-br ${cat.color} border border-[#1b2333] ${cat.border} transition-all`}
+                  className={`p-5 rounded-xl bg-gradient-to-br ${cat.color} border border-[#2d343d] ${cat.border} transition-all`}
                 >
                   <h3 className={`font-bold mb-2 ${cat.accent}`}>{cat.title}</h3>
                   <p className="text-xs text-slate-400 leading-relaxed">{cat.desc}</p>
@@ -294,19 +294,19 @@ export default async function LandingPage({
         </section>
 
         {/* XP & Badges */}
-        <section className="py-24 px-6 border-t border-[#1b2333] bg-[#070b12]">
+        <section className="py-24 px-6 border-t border-[#2d343d] bg-surface-input">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-3xl font-bold text-white mb-2">{t("xpTitle")}</h2>
             <p className="text-slate-400 mb-12">{t("xpSubtitle")}</p>
             <div className="flex justify-center gap-6">
               {[
                 { label: t("xpBadgeStandard"), color: "text-slate-400", border: "border-slate-600" },
-                { label: t("xpBadgeRare"), color: "text-blue-400", border: "border-blue-500" },
+                { label: t("xpBadgeRare"), color: "text-brand-blue", border: "border-brand-blue" },
                 { label: t("xpBadgeMythical"), color: "text-purple-400", border: "border-purple-500" },
               ].map((badge) => (
                 <div
                   key={badge.label}
-                  className={`px-5 py-3 rounded-xl border ${badge.border} bg-[#050911]/60 ${badge.color} text-sm font-semibold`}
+                  className={`px-5 py-3 rounded-xl border ${badge.border} bg-bg-dark/60 ${badge.color} text-sm font-semibold`}
                 >
                   {badge.label}
                 </div>
@@ -316,13 +316,13 @@ export default async function LandingPage({
         </section>
 
         {/* Coach IA */}
-        <section className="py-24 px-6 border-t border-[#1b2333]">
+        <section className="py-24 px-6 border-t border-[#2d343d]">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-3xl font-bold text-white mb-2">{t("coachTitle")}</h2>
             <p className="text-slate-400 mb-12">{t("coachSubtitle")}</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[t("coachFeature1"), t("coachFeature2"), t("coachFeature3")].map((feat) => (
-                <div key={feat} className="p-4 rounded-xl border border-[#1b2333] bg-[#070b12]">
+                <div key={feat} className="p-4 rounded-xl border border-[#2d343d] bg-surface-input">
                   <p className="text-sm text-slate-300">{feat}</p>
                 </div>
               ))}
@@ -331,14 +331,14 @@ export default async function LandingPage({
         </section>
 
         {/* FAQ */}
-        <section className="py-24 px-6 border-t border-[#1b2333] bg-[#070b12]">
+        <section className="py-24 px-6 border-t border-[#2d343d] bg-surface-input">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-3xl font-bold text-white text-center mb-12">
               {t("faqTitle")}
             </h2>
             <div className="space-y-6">
               {FAQ_SCHEMA.map((f) => (
-                <div key={f.question} className="p-6 rounded-xl border border-[#1b2333] bg-[#050911]">
+                <div key={f.question} className="p-6 rounded-xl border border-[#2d343d] bg-bg-dark">
                   <h3 className="font-semibold text-white mb-3">{t(f.question)}</h3>
                   <p className="text-sm text-slate-400 leading-relaxed">{t(f.answer)}</p>
                 </div>
@@ -348,13 +348,13 @@ export default async function LandingPage({
         </section>
 
         {/* Final CTA */}
-        <section className="py-24 px-6 text-center border-t border-[#1b2333]">
+        <section className="py-24 px-6 text-center border-t border-[#2d343d]">
           <div className="max-w-2xl mx-auto">
             <h2 className="font-display text-3xl font-bold text-white mb-4">{t("ctaTitle")}</h2>
             <p className="text-slate-400 mb-10">{t("ctaSubtitle")}</p>
             <a
               href={registerHref}
-              className="inline-block px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-[0_0_40px_rgba(0,102,255,0.3)] text-lg"
+              className="inline-block px-10 py-5 bg-brand-blue text-bg-dark font-bold rounded-xl hover:opacity-90 transition-opacity shadow-brand text-lg"
             >
               {t("ctaButton")}
             </a>
@@ -362,10 +362,10 @@ export default async function LandingPage({
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-[#1b2333] py-8 px-6">
+        <footer className="border-t border-[#2d343d] py-8 px-6">
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="p-1.5 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-lg">
+              <div className="p-1.5 bg-brand-blue rounded-lg shadow-brand">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
                   <path d="m16 16 6-6" />

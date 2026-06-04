@@ -25,7 +25,7 @@ export function ChatBubble({ text, isUser, senderName, onCopy, onSave }: ChatBub
             size="xs"
             shape="circle"
             fallback="A"
-            className="bg-blue-600 text-white font-bold text-[10px]"
+            className="bg-brand-blue text-bg-dark font-bold text-[10px]"
           />
         )}
         <span className="text-[10px] text-slate-500 font-bold font-mono">{senderName}</span>
@@ -36,7 +36,7 @@ export function ChatBubble({ text, isUser, senderName, onCopy, onSave }: ChatBub
           className={cn(
             "p-4 rounded-2xl text-xs sm:text-sm leading-relaxed whitespace-pre-line",
             isUser
-              ? "bg-blue-600 text-white rounded-tr-none shadow-[0_4px_12px_rgba(37,99,235,0.25)] font-medium"
+              ? "bg-brand-blue text-bg-dark rounded-tr-none shadow-brand font-medium"
               : "bg-surface-raised text-slate-200 rounded-tl-none border border-border-card"
           )}
         >
@@ -65,7 +65,7 @@ export function ChatBubble({ text, isUser, senderName, onCopy, onSave }: ChatBub
                     size="sm"
                     onClick={onSave}
                     title={t("savePlan")}
-                    className="text-blue-400 hover:text-white text-[9px]"
+                    className="text-brand-blue hover:text-white text-[9px]"
                   >
                     <Bookmark className="h-2.5 w-2.5 fill-current" />
                     <span>{t("save")}</span>

@@ -9,7 +9,7 @@ const variantStyles: Record<CardVariant, string> = {
   default: "bg-bg-card border border-border-card rounded-2xl",
   elevated: "bg-surface-raised border border-border-card rounded-xl",
   interactive:
-    "bg-bg-card border border-border-card rounded-2xl hover:border-blue-500/50 transition-all cursor-pointer",
+    "bg-bg-card border border-border-card rounded-2xl hover:border-brand-blue/30 transition-all cursor-pointer",
   overlay: "bg-surface-overlay border border-border-card/80 rounded-2xl",
   input: "bg-surface-input border border-border-card rounded-xl",
 }

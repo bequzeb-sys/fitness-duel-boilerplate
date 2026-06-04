@@ -62,9 +62,9 @@ export const HELP_AXES: HelpAxis[] = [
     id: "force",
     name: "axesForce",
     icon: Dumbbell,
-    color: "text-[#00ddff] bg-[#00ddff]/5 border-[#00ddff]/20",
-    badgeBg: "bg-[#00ddff]/10 text-[#00ddff]",
-    hoverColor: "hover:border-[#00ddff]/40 hover:bg-[#00ddff]/10",
+    color: "text-brand-blue bg-brand-blue/5 border-brand-blue/20",
+    badgeBg: "bg-brand-blue/10 text-brand-blue",
+    hoverColor: "hover:border-brand-blue/40 hover:bg-brand-blue/10",
     glow: "shadow-[0_0_15px_rgba(0,221,255,0.15)]",
     shortDesc: "axesForceShort",
     programs: [
@@ -250,7 +250,7 @@ export default function CoachPage({
           className={cn(
             "gap-2 whitespace-nowrap",
             activeSubTab === "coach-ia"
-              ? "bg-gradient-to-r from-blue-600 to-cyan-500 shadow-[0_4px_12px_rgba(37,99,235,0.3)]"
+              ? "bg-brand-blue shadow-brand"
               : "text-slate-400 hover:text-slate-200"
           )}
         >
@@ -269,7 +269,7 @@ export default function CoachPage({
               onClick={() => setActiveSubTab(ax.id)}
               className={cn(
                 "gap-2 whitespace-nowrap",
-                activeSubTab === ax.id ? `${ax.color} border border-border-card/80 bg-[#142640]/50` : "text-slate-400 hover:text-slate-200"
+                activeSubTab === ax.id ? `${ax.color} border border-border-card/80 bg-brand-blue/5` : "text-slate-400 hover:text-slate-200"
               )}
             >
               <Icon className="h-4 w-4 shrink-0 text-current" />
@@ -299,7 +299,7 @@ export default function CoachPage({
               <div className="flex items-center justify-between pb-3.5 border-b border-border-card/80">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center font-display font-black text-white shadow-[0_0_12px_rgba(37,99,235,0.3)]">CA</div>
+                    <div className="h-10 w-10 rounded-full bg-brand-blue flex items-center justify-center font-display font-black text-bg-dark shadow-brand">CA</div>
                     <div className="absolute bottom-0 right-0 h-3 w-3 bg-emerald-500 rounded-full border-2 border-bg-card" />
                   </div>
                   <div>
@@ -332,7 +332,7 @@ export default function CoachPage({
                 {coachTyping && (
                   <div className="flex flex-col items-start">
                     <div className="flex items-center gap-1.5 mb-1.5">
-                      <div className="h-5 w-5 rounded bg-blue-600 flex items-center justify-center text-[10px] text-white font-bold">A</div>
+                      <div className="h-5 w-5 rounded bg-brand-blue flex items-center justify-center text-[10px] text-bg-dark font-bold">A</div>
                       <span className="text-[10px] text-slate-500 font-bold font-mono">{t("chatCoach")}</span>
                     </div>
                     <div className="p-3.5 bg-surface-raised text-slate-400 rounded-2xl rounded-tl-none border border-border-card">
@@ -384,7 +384,7 @@ export default function CoachPage({
                         )}
                       >
                         <div className="flex items-center justify-between w-full">
-                          <div className="p-1.5 rounded-lg bg-slate-900 border border-border-card/60 flex items-center justify-center">
+                          <div className="p-1.5 rounded-lg bg-surface-raised border border-border-card/60 flex items-center justify-center">
                             <AxIcon className="h-4 w-4" />
                           </div>
                         </div>
@@ -411,7 +411,7 @@ export default function CoachPage({
                       variant="secondary"
                       size="sm"
                       onClick={() => sendToCoach(t(prog.promptKey))}
-                      className="w-full text-left p-3 border hover:border-blue-500/30 rounded-xl"
+                      className="w-full text-left p-3 border hover:border-brand-blue/30 rounded-xl"
                     >
                       <div className="flex justify-between items-start gap-1 w-full">
                         <div>
@@ -472,7 +472,7 @@ export default function CoachPage({
                 <div className="space-y-4 flex-1 flex flex-col">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Bookmark className="h-4 w-4 text-blue-400 fill-blue-400/20" />
+                      <Bookmark className="h-4 w-4 text-brand-cyan fill-brand-cyan/20" />
                       <h4 className="text-xs font-display font-extrabold text-slate-200 uppercase tracking-widest">
                         {t("myPlans")} ({savedPlans.filter((p) => p.category === activeSubTab).length})
                       </h4>
@@ -491,7 +491,7 @@ export default function CoachPage({
                   <div className="flex-1 overflow-y-auto max-h-[360px] space-y-3.5 custom-scrollbar pr-1">
                     {savedPlans.filter((p) => p.category === activeSubTab).length === 0 ? (
                       <div className="p-8 bg-surface-raised border border-border-card/80 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 mt-4">
-                        <div className="p-3 bg-slate-800/40 rounded-full border border-slate-700/40 text-slate-500">
+                        <div className="p-3 bg-surface-overlay rounded-full border border-border-card text-slate-500">
                           <Bookmark className="h-6 w-6" />
                         </div>
                         <div className="max-w-md">
@@ -510,7 +510,7 @@ export default function CoachPage({
                           <Card key={plan.id} variant="elevated" padding="md" className="flex flex-col justify-between space-y-3 relative group">
                             <div className="space-y-1.5">
                               <div className="flex items-start justify-between">
-                                <h5 className="text-xs font-black text-slate-100 uppercase tracking-wide group-hover:text-blue-400 transition-colors">{plan.title}</h5>
+                                <h5 className="text-xs font-black text-slate-100 uppercase tracking-wide group-hover:text-brand-blue transition-colors">{plan.title}</h5>
                                 <span className="text-[8px] font-mono text-slate-500 shrink-0">{plan.date}</span>
                               </div>
                               <p className="text-[11px] text-slate-400 leading-relaxed font-mono whitespace-pre-wrap break-words line-clamp-5 max-h-[140px] overflow-y-auto custom-scrollbar p-2 bg-bg-dark rounded-lg border border-border-card/40">
@@ -544,9 +544,9 @@ export default function CoachPage({
                 </div>
               </div>
 
-              <div className="p-4 bg-gradient-to-r from-blue-950/40 to-transparent border border-blue-900/40 rounded-xl flex items-center justify-between gap-4">
+              <div className="p-4 bg-brand-blue/5 border border-brand-blue/20 rounded-xl flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <Info className="h-4 w-4 text-blue-400 shrink-0" />
+                  <Info className="h-4 w-4 text-brand-blue shrink-0" />
                   <p className="text-[11px] text-slate-300 font-semibold leading-relaxed">
                     {t("aiAccessible")}
                   </p>
@@ -577,7 +577,7 @@ export default function CoachPage({
                         <p className="text-[10px] text-slate-400 leading-relaxed font-semibold">{t(prog.descKey)}</p>
                       </div>
                       <div className="pt-2 border-t border-border-card/60 flex items-center justify-between text-[9px] font-mono">
-                        <span className="text-blue-400 bg-blue-500/10 px-1.5 py-0.2 rounded font-mono font-bold">{prog.xp}</span>
+                        <span className="text-brand-blue bg-brand-blue/10 px-1.5 py-0.2 rounded font-mono font-bold">{prog.xp}</span>
                         <Button
                           variant="secondary"
                           size="sm"

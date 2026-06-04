@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Le tableau de bord social fitness ultime pour défier ses amis au quotidien",
     start_url: "/",
     display: "standalone",
-    background_color: "#050911",
-    theme_color: "#050911",
+    background_color: "#0b0d10",
+    theme_color: "#0b0d10",
     icons: [
       {
         src: "/icon-192.svg",

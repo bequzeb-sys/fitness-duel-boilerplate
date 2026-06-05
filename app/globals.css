@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+@theme {
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+
+  /* Brand Cyan */
+  --color-brand-blue: #12D9FF;
+  --color-brand-cyan: #12D9FF;
+
+  /* Surface Greys — graphite stack */
+  --color-bg-dark: #0b0d10;
+  --color-bg-card: #171b20;
+  --color-bg-raised: #1d2228;
+  --color-bg-overlay: #232931;
+
+  /* Borders */
+  --color-border-card: #2d343d;
+  --color-border-soft: #232930;
+  --color-border-strong: #3a434d;
+
+  /* Surfaces */
+  --color-surface-raised: #1d2228;
+  --color-surface-input: #12161b;
+  --color-surface-overlay: #1a1f26;
+
+  /* Hover */
+  --color-hover-bg: #1d2228;
+  --color-hover-active: #232931;
+  --color-hover-deep: #2d343d;
+
+  /* Sidebar */
+  --color-sidebar-bg: #111418;
+
+  /* Shadows — cyan glow */
+  --shadow-brand: 0 0 20px rgba(18, 217, 255, 0.22);
+  --shadow-brand-lg: 0 0 28px rgba(18, 217, 255, 0.30);
+  --shadow-brand-focus: 0 0 12px rgba(18, 217, 255, 0.15);
+  --shadow-cyan: 0 0 20px rgba(18, 217, 255, 0.22);
+  --shadow-success: 0 0 12px rgba(18, 217, 255, 0.15);
+  --shadow-error: 0 0 12px rgba(200, 208, 214, 0.08);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-modal: 0 15px 40px rgba(0, 0, 0, 0.6);
+
+  /* Icon size scale */
+  --icon-xs: 12px;
+  --icon-sm: 14px;
+  --icon-md: 16px;
+  --icon-lg: 18px;
+  --icon-xl: 20px;
+  --icon-2xl: 24px;
+
+  /* Responsive typography scale */
+  --text-caption: 11px;
+  --text-meta: 12px;
+  --text-body-sm: 14px;
+  --text-body-md: 16px;
+  --text-title-sm: 16px;
+  --text-title-md: 20px;
+
+  /* Responsive control heights */
+  --control-height-compact: 40px;
+  --control-height-comfortable: 44px;
+  --control-height-spacious: 48px;
+
+  /* Responsive spacing scale */
+  --space-card-compact: 0.75rem;
+  --space-card-comfortable: 1rem;
+  --space-card-spacious: 1.25rem;
+}
+
+@layer base {
+  :root {
+    --background: 225 30% 4%;
+    --foreground: 210 40% 98%;
+    --card: 222 40% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 40% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 30% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 30% 15%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 217 30% 15%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 30% 18%;
+    --input: 217 30% 18%;
+    --ring: 220 100% 50%;
+    --radius: 1rem;
+
+    /* Z-index scale */
+    --z-base: 0;
+    --z-overlay: 10;
+    --z-sticky: 15;
+    --z-overlay-backdrop: 39;
+    --z-drawer: 50;
+    --z-modal: 50;
+    --z-popover: 50;
+    --z-toast: 60;
+    --z-tooltip: 70;
+  }
+}
+
+@layer utilities {
+  /* Dynamic custom scrollbar for dashboard columns and messaging panel */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #0b0d10;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #2d343d;
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #12D9FF;
+  }
+}
+
+/* Global scrollbar reset — applies to all scrollable elements */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2d343d #0b0d10;
+  }
+
+  *::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  *::-webkit-scrollbar-button,
+  *::-webkit-scrollbar-track-piece {
+    display: none;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #0b0d10;
+    border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #2d343d;
+    border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #12D9FF;
+  }
+}

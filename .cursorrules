@@ -1,0 +1,353 @@
+# FitnessDuel — Cursor AI Coding Rules
+
+## Project Overview
+
+FitnessDuel is a social fitness gamification app built with Next.js 15, targeting French-speaking users. The core loop is: log workouts, create/accept fitness challenges against friends, earn XP, and climb leaderboards. The app has an AI coach chat powered by a keyword-matcher (offline mode, no API key required for MVP).
+
+**Primary language:** French
+**All visible UI strings must be in French unless explicitly working on the `en.json` locale scaffold.**
+
+---
+
+## Tech Stack
+
+| Category | Technology |
+|---|---|
+| Framework | Next.js 15.5 (App Router) |
+| Language | TypeScript 5.9 |
+| UI | React 19, Tailwind CSS 4, Radix UI (Dialog, DropdownMenu, Progress, Tooltip, Separator) |
+| Animations | Framer Motion (`motion/react`) |
+| i18n | `next-intl` v4 with `localePrefix: 'as-needed'` |
+| Dark mode | `next-themes` |
+| Icons | `lucide-react` |
+| Notifications | `sonner` |
+| Schema validation | `Zod` v4 |
+| Fonts | Google Fonts via `next/font/google` — Inter, Space Grotesk, JetBrains Mono |
+| Deployment target | `output: 'standalone'` (Docker-compatible) |
+
+---
+
+## Directory Structure
+
+```
+app/
+  layout.tsx                    # Root layout (metadata, ThemeProvider, ErrorBoundary, suppressHydrationWarning)
+  [locale]/
+    layout.tsx                  # Locale layout (NextIntlClientProvider, locale validation)
+    page.tsx                    # Main dashboard — ALL shared state lives here ("use client")
+    locales/
+      fr.json                   # All French translations (the only fully implemented locale)
+      en.json                   # Empty scaffold — do not remove
+  api/
+    gemini/route.ts             # AI Coach API — offline keyword-matcher + in-memory rate limit
+  components/
+    pages/                      # Feature pages: AmisPage, BadgesPage, ClassementsPage,
+                                #   DefisPage, ActivitePage, ProfilPage (all "use client")
+    coach/                      # CoachPage, ChatBubble, ChatInput, CoachSuggestions,
+                                #   CoachIntro, TypingIndicator, SavePlanModal
+    modals/
+      CreateChallengeModal.tsx  # Challenge creation form
+    sidebar/
+      Sidebar.tsx, MobileDrawer.tsx
+    header/Header.tsx
+    tabs/AccueilTab.tsx
+    ui/                         # Primitive wrappers around Radix UI
+      dialog.tsx, dropdown-menu.tsx, tooltip.tsx, separator.tsx,
+      progress.tsx, command.tsx, sonner.tsx, avatar.tsx, badge.tsx,
+      button.tsx, card.tsx, icon.tsx
+    ErrorBoundary.tsx
+  hooks/
+    useLocalStorage.ts          # SSR-safe localStorage hook (try/catch on read/write)
+    useUserProfile.tsx          # User identity + body stats + toast notifications
+    use-mobile.ts
+  types.ts                      # Shared interfaces: Message, Challenge, RecentActivity,
+                                #   Ranking/RankingEntry, CoachSuggestion, TABS constants
+  globals.css                   # Tailwind directives + CSS variables
+  manifest.ts                   # PWA manifest
+  robots.ts / sitemap.ts        # SEO metadata
+i18n/
+  routing.ts                    # next-intl routing config (fr/en, default: fr, as-needed)
+  request.ts                    # next-intl server config (locale + message loading)
+public/
+  favicon.svg                   # App icon
+  icon-192.svg, icon-512.svg   # PWA icons
+middleware.ts                   # next-intl locale middleware (handles /, /fr, /en)
+next.config.ts                  # Next.js config + security headers + next-intl plugin
+.env.example                    # Template — never commit real secrets
+```
+
+---
+
+## Architecture Conventions
+
+### Client Components Only
+
+Every page component and most UI components are `"use client"`. The only server components are:
+- `app/layout.tsx` (root)
+- `app/[locale]/layout.tsx` (locale shell)
+
+`app/[locale]/page.tsx` is `"use client"` despite living under the App Router.
+
+### State Architecture
+
+- **All shared state lives in `app/[locale]/page.tsx`** as `useState` / `useLocalStorage` hooks
+- Child pages receive handlers and data as props — they never own shared state
+- Refs (`useRef`) are used for stable IDs (message IDs, challenge IDs, activity IDs) so they don't trigger re-renders
+- The `Toaster` (sonner) lives in the page component, not in individual pages
+
+### Routing
+
+| URL | File |
+|---|---|
+| `/` | Redirects to `/fr` (or `/en`) via `middleware.ts` based on `accept-language` |
+| `/fr/*` | `app/[locale]/page.tsx` with locale `fr` |
+| `/api/gemini` | `app/api/gemini/route.ts` |
+
+---
+
+## i18n Conventions
+
+- **All visible strings use the `useTranslations()` hook** from `next-intl`
+- Translations are namespaced by page/section in `fr.json` (e.g., `activity.*`, `defis.*`, `coach.*`)
+- Interpolation uses `{variable}` syntax (e.g., `"{xp} XP"`)
+- Plural support via ICU message syntax where needed
+- **Never hardcode a visible French string in component code** — always add a key to `fr.json` and use `t("key")`
+
+### Adding a New Translation Key
+
+1. Add the key/value to `app/[locale]/locales/fr.json` under the appropriate namespace
+2. Import `useTranslations` in the component: `import { useTranslations } from 'next-intl'`
+3. Call `const t = useTranslations()` at the top of the component
+4. Replace the string with `t("namespace.key")`
+
+---
+
+## Data Model (localStorage)
+
+All persisted state uses `localStorage` keys prefixed with `fitness_duel_`. These are **seed data / prototype persistence only** — no backend, no authentication, no server-side validation.
+
+| Key | Type | Default |
+|---|---|---|
+| `fitness_duel_user_name` | string | `"Alex GUERRIER"` — **replace before production** |
+| `fitness_duel_user_email` | string | `"Salambekov@gmail.com"` — **real PII, remove before production** |
+| `fitness_duel_user_weight` | number | `78` |
+| `fitness_duel_user_height` | number | `180` |
+| `fitness_duel_user_bio` | string | seed bio |
+| `fitness_duel_user_status` | string | seed status |
+| `fitness_duel_daily_xp_goal` | number | `150` |
+| `fitness_duel_xp` | number | `2150` |
+| `fitness_duel_challenges` | `Challenge[]` | `DEFAULT_CHALLENGES` |
+| `fitness_duel_streak` | `Array<{day, checked}>` | `DEFAULT_STREAK` |
+| `fitness_duel_friends` | `Friend[]` | `DEFAULT_FRIENDS` |
+| `fitness_duel_activities` | `RecentActivity[]` | `DEFAULT_ACTIVITIES` |
+| `fitness_duel_coach_plans` | `SavedPlan[]` | `[]` |
+
+When Supabase auth is wired, migrate all keys above to Postgres with RLS. Keep `useLocalStorage` only for non-sensitive UI preferences (theme, dismissed banners).
+
+---
+
+## Security Rules
+
+### Critical — Fix Before Production
+
+- **`Do not commit real PII.`** `useUserProfile.tsx` uses `"utilisateur@example.com"` as the default email seed — this is already a safe placeholder. The `userName` default is `"Champion"`. All other seed values are generic.
+- **No authentication exists.** The app has zero auth. Treat all localStorage data as user-controlled and untrusted in any multi-user context.
+- **No server-side validation.** XP awards, challenge completions, and friend additions are purely client-side. When adding a backend, every mutation must be validated server-side.
+
+### General Guidelines
+
+- **No `eval()` or `new Function()`** — never allow string-to-code execution
+- **No `dangerouslySetInnerHTML`** — all content must be rendered as React children or through a safe mechanism
+- **External images** — only allow `picsum.photos`, `images.unsplash.com`, `plus.unsplash.com` via `next.config.ts` `remotePatterns`
+- **Form inputs** — always add `maxLength` to text inputs and validate before storing
+- **No CSP `<meta>` tag** — security headers belong in `next.config.ts` only. A `<meta http-equiv="Content-Security-Policy">` tag in `layout.tsx` causes two problems: `frame-ancestors` is ignored when delivered via `<meta>`, and it overrides the server-set headers needed by Next.js HMR (which requires `unsafe-eval`)
+
+---
+
+## Component Patterns
+
+### Props Interface Pattern
+
+Every component that receives data from `page.tsx` has an explicit TypeScript interface. Example:
+
+```typescript
+interface BadgesPageProps {
+  addToast: (msg: string, type?: "success" | "info" | "xp") => void;
+  levelPercentage: number;
+}
+```
+
+### Tailwind CSS Variables
+
+Font variables are injected at the `<html>` level via `next/font`:
+
+```tsx
+<html lang={locale} suppressHydrationWarning className={`${inter.variable} ...`}>
+```
+
+Use `--font-sans` for body text, `--font-display` for headings, `--font-mono` for code/monospace.
+
+### Design Token Colors
+
+- Background: `bg-[#050911]` (deep dark navy)
+- Surface: `bg-[#070b12]` (card backgrounds)
+- Border: `border-[#1b2533]`
+- Primary accent: `blue-500/blue-600`
+- Text: `text-slate-100` / `text-slate-400` / `text-slate-200`
+
+### Animation Pattern
+
+Use `motion/react` for page transitions and micro-interactions:
+
+```tsx
+<motion.div key="accueil" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+```
+
+### Shared UI Components
+
+All hand-coded markup in page components must be replaced with these shared primitives. No exceptions.
+
+#### Button (`@/app/components/ui/button`)
+
+```typescript
+import { Button } from "@/app/components/ui/button";
+```
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `variant` | `ButtonVariant` | `"primary"` | `primary`, `ghost`, `secondary`, `destructive`, `whiteCta`, `social`, `pill`, `icon`, `iconSmall`, `streak`, `ghostText`, `primarySmall` |
+| `size` | `ButtonSize` | `"sm"` | `xs`, `sm`, `md`, `lg`, `icon-xs`, `icon-sm`, `icon-md`, `icon-lg` |
+| `loading` | `boolean` | `false` | Shows spinner and disables interaction |
+| `asChild` | `boolean` | `false` | Uses Radix `Slot` to merge props onto child element |
+| `disabled` | `boolean` | — | Passed through to native `<button disabled>` |
+
+```tsx
+<Button variant="primary" size="sm">Defier</Button>
+<Button variant="iconSmall" size="icon-sm" onClick={onClose}><X /></Button>
+```
+
+#### Card (`@/app/components/ui/card`)
+
+```typescript
+import { Card } from "@/app/components/ui/card";
+```
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `variant` | `CardVariant` | `"default"` | `default`, `elevated`, `interactive`, `overlay`, `input` |
+| `padding` | `string` | `"lg"` | `none`, `sm`, `md`, `lg`, `xl` |
+| `className` | `string` | — | Additional classes |
+| `...props` | `HTMLDivElement` | — | `onClick`, `onMouseEnter`, etc. |
+
+```tsx
+<Card variant="interactive" padding="md" className="hover:border-blue-500">
+  <CardHeader>...</CardHeader>
+  <CardTitle>...</CardTitle>
+  <CardContent>...</CardContent>
+</Card>
+```
+
+#### Avatar (`@/app/components/ui/avatar`)
+
+```typescript
+import { Avatar } from "@/app/components/ui/avatar";
+```
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `src` | `string` | — | Image URL; falls back to initials on error |
+| `fallback` | `string` | — | Two-letter initials shown when `src` fails |
+| `size` | `AvatarSize` | `"md"` | `xs`, `sm`, `md`, `lg`, `xl`, `2xl` |
+| `shape` | `AvatarShape` | `"circle"` | `circle`, `square` |
+| `borderColor` | `string` | `"border-border-card"` | |
+| `borderWidth` | `string` | — | e.g. `"border-2"` |
+| `shadow` | `string` | — | e.g. `"shadow-lg"` |
+
+```tsx
+<Avatar src={avatar} fallback={name} size="md" shape="circle" />
+```
+
+#### Badge (`@/app/components/ui/badge`)
+
+```typescript
+import { Badge, TierBadge, PillBadge } from "@/app/components/ui/badge";
+```
+
+| Component | Variants | Notes |
+|---|---|---|
+| `Badge` | `tier-standard`, `tier-standard-locked`, `tier-rare-amber`, `tier-rare-emerald`, `tier-mythical`, `pill-new`, `pill-status`, `pill-xp`, `pill-rank`, `pill-progress`, `pill-tier-count` | Base; supports `size` (`xs`, `sm`, `md`, `lg`) |
+| `TierBadge` | Same as `Badge` tier variants | Auto-locks when `earned={false}` |
+| `PillBadge` | Same as `Badge` pill variants | Convenience wrapper; supports `size` |
+
+```tsx
+<TierBadge variant="tier-rare-amber" size="sm" earned={badge.earned}>
+  <Icon icon={BadgeIcon} />
+  <span>{badge.name}</span>
+</TierBadge>
+
+<PillBadge variant="pill-xp" size="xs">+50 XP</PillBadge>
+```
+
+#### Icon (`@/app/components/ui/icon`)
+
+```typescript
+import { Icon } from "@/app/components/ui/icon";
+```
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `icon` | `LucideIcon` | required | Any Lucide icon component |
+| `size` | `IconSize` | `"md"` | `xs`, `sm`, `md`, `lg`, `xl`, `2xl` |
+| `strokeWidth` | `number \| string` | `2` | Override Lucide stroke weight |
+| `className` | `string` | — | Additional classes |
+
+```tsx
+<Icon icon={Swords} size="xl" className="text-blue-400" />
+```
+
+---
+
+## API Route Conventions (`app/api/`)
+
+### Rate Limiting
+
+`/api/gemini` uses an in-memory `Map` for rate limiting. This resets on server restart and does not work correctly in multi-instance deployments. Always document this:
+
+```typescript
+// In-memory rate limiting. Resets on restart. Replace with Redis/Supabase for production.
+```
+
+### Input Validation
+
+Always use Zod schemas for request body and header validation. Reject with a generic message on failure — never echo back user input in error messages.
+
+```typescript
+const schema = z.object({ message: z.string().min(1).max(2000) });
+// On failure: return NextResponse.json({ text: "Message invalide." }, { status: 400 });
+```
+
+---
+
+## Testing Checklist Before Opening a PR
+
+1. `npm run lint` passes (or `eslint . --fix`)
+2. `npx tsc --noEmit` passes with no errors
+3. `npm run dev` starts without console errors
+4. Navigate to `http://localhost:3000/` — should redirect to `/fr`
+5. All tabs (Accueil, Defis, Activite, Amis, Classements, Badges, Coach IA, Profil) render without errors
+6. Coach chat sends a message and receives a response from `/api/gemini`
+7. No `dangerouslySetInnerHTML` or `eval()` introduced
+8. No hardcoded French strings in new components — all added to `fr.json`
+9. No real PII (real emails, real names) in default seed values
+
+---
+
+## Common Pitfalls
+
+- **Always verify imports after editing** — when editing an import block, ensure the replacement string covers the exact lines you intend to replace. A partial match leaves orphaned imports or duplicates that break TypeScript. Always run `npx tsc --noEmit` after any import change.
+- **Import name shadowing** — if a component has a local variable with the same name as a component import (e.g., `const Icon = s.icon`), rename the local variable to avoid the conflict. Example: `const IconComp = s.icon`.
+- **Importing `next-intl` client hooks on the server** — `useTranslations`, `useLocale`, `useMessages` are client-only. For server components, use `getTranslations`, `getLocale`, `getMessages` from `next-intl/server`.
+- **Missing `suppressHydrationWarning` on `<html>`** — required because `next-themes` injects `dark` class and `color-scheme` style on the client after hydration. The error message is: "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties."
+- **Missing `middleware.ts`** — required for `next-intl` with `localePrefix: 'as-needed'`. Without it, `/` returns 404.
+- **Build failing with EPERM** — a dev server is running and holding `.next/trace`. Kill it before `npm run build`.
+- **`eslint.ignoreDuringBuilds: true` in `next.config.ts`** — this hides lint errors in CI. Keep it off except when actively debugging a broken lint rule.

@@ -1,0 +1,138 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+export default function RegisterPage() {
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [agreed, setAgreed] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim()) { setError("Le nom d'utilisateur est obligatoire."); return; }
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Adresse email invalide.");
+      return;
+    }
+    if (password.length < 8) { setError("Le mot de passe doit contenir au moins 8 caractères."); return; }
+    if (!agreed) { setError("Tu dois accepter les conditions d'utilisation."); return; }
+
+    localStorage.setItem("fitness_duel_logged_in", "true");
+    localStorage.setItem("fitness_duel_user_name", name);
+    localStorage.setItem("fitness_duel_user_email", email);
+    localStorage.setItem("fitness_duel_onboarding_step", "1");
+    router.push("/fr/onboarding/profile");
+  };
+
+  return (
+    <div className="min-h-screen bg-bg-dark text-sans flex items-center justify-center px-4">
+      <div className="w-full max-w-md">
+        {/* Logo */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="p-3 bg-brand-blue rounded-xl shadow-brand">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8" />
+                <path d="m16 16 6-6" />
+                <path d="m8 8 6-6" />
+                <path d="m9 7 8 8" />
+                <path d="m21 11-8-8" />
+              </svg>
+            </div>
+            <span className="font-display text-2xl font-black text-white">Fitness Duel</span>
+          </div>
+          <h1 className="font-display text-2xl font-bold text-white">Créer un compte</h1>
+          <p className="text-slate-400 text-sm mt-1">Rejoins la communauté en 30 secondes</p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {error && (
+            <div className="p-3 rounded-lg bg-rose-600/10 border border-rose-600/30 text-rose-400 text-sm">
+              {error}
+            </div>
+          )}
+
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+              {"Nom d'utilisateur"}
+            </label>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Alex"
+              maxLength={30}
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-[#2d343d] text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+              Adresse email
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="alex@example.com"
+              autoComplete="email"
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-[#2d343d] text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-slate-300 mb-2">
+              Mot de passe
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="8 caractères minimum"
+              autoComplete="new-password"
+              className="w-full px-4 py-3 rounded-xl bg-surface-input border border-[#2d343d] text-white placeholder-slate-600 focus:outline-none focus:border-brand-blue transition-colors"
+            />
+          </div>
+
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              className="mt-0.5 w-4 h-4 rounded border-[#2d343d] bg-surface-input accent-brand-blue shrink-0"
+            />
+            <span className="text-xs text-slate-400 leading-relaxed">
+            J&apos;accepte les{" "}
+            <Link href="/fr/terms" className="text-brand-blue hover:underline">conditions d&apos;utilisation</Link>{" "}
+            et la{" "}
+            <Link href="/fr/privacy" className="text-brand-blue hover:underline">politique de confidentialité</Link>.
+            </span>
+          </label>
+
+          <button
+            type="submit"
+            className="w-full py-3.5 bg-brand-blue text-bg-dark font-bold rounded-xl hover:opacity-90 transition-opacity shadow-brand"
+          >
+            Créer mon compte
+          </button>
+        </form>
+
+        <p className="text-center text-sm text-slate-500 mt-6">
+          Déjà un compte ?{" "}
+          <Link href="/fr/auth/login" className="text-brand-blue hover:text-brand-blue/80 transition-colors font-medium">
+            Se connecter
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}

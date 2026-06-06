@@ -1,0 +1,12 @@
+---
+description: Decide whether frontend code belongs in shared UI or feature folders
+alwaysApply: true
+---
+
+# Shared UI vs Feature Folder Placement
+
+- Put code in `components/ui` only when the pattern is reusable, presentational, and likely needed across multiple screens.
+- Keep code in feature folders when it is domain-specific, screen-specific, or depends on feature-only logic and naming.
+- Prefer composing existing shared primitives over creating a new base component.
+- Do not move one-off feature markup into `components/ui` just to make it look reusable.
+- If reuse is uncertain, keep the component local first and promote it later when duplication is real.

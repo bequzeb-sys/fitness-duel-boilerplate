@@ -1,0 +1,13 @@
+---
+description: Frontend consistency standards for FitnessDuel React and Next.js UI work
+alwaysApply: true
+---
+
+# FitnessDuel Frontend Consistency
+
+- Prefer existing shared UI primitives in `components/ui` before creating custom JSX or styling.
+- Put reusable visual patterns in `components/ui`; keep feature-specific composition in feature folders.
+- Do not hardcode user-visible strings in components; use translations from `app/[locale]/locales/fr.json`.
+- Use semantic design tokens and existing variants instead of hardcoded colors or ad hoc visual classes.
+- Preserve accessibility, responsive behavior, and interaction states when refactoring UI.
+- Before finishing frontend work, verify shared UI consistency, translations, and basic lint/type safety.

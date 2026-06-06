@@ -4,7 +4,7 @@ Use this skill to paste project context into AI Studio or AI Builder before gene
 
 ## Architecture
 
-- **Next.js 16.2.7** App Router, TypeScript strict mode
+- **Next.js 15.5** App Router, TypeScript strict mode
 - **UI path**: `@/app/components/ui/` (28 shared components)
 - **State**: React Context + `useLocalStorage` hook
 - **i18n**: `next-intl` v4
